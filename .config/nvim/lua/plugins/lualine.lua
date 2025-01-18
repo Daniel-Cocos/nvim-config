@@ -4,7 +4,7 @@ return {
 	config = function()
 		require('lualine').setup({
 			options = {
-				theme = '16color'
+				theme = 'auto'
 			}
 		})
 	end
