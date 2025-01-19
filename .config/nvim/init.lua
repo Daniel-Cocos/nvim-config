@@ -3,7 +3,6 @@ local color_scheme_file = vim.fn.stdpath("config") .. "/lua/settings/last_colors
 
 -- Function to store and set the color scheme
 function SetColorscheme(colorscheme)
-  -- Save the color scheme to a file
   vim.fn.writefile({colorscheme}, color_scheme_file)
   vim.cmd('colorscheme ' .. colorscheme)
 end
@@ -11,7 +10,6 @@ end
 -- Autocommand to save the color scheme on change
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
-    -- Save the current color scheme whenever it changes
     vim.fn.writefile({vim.g.colors_name}, color_scheme_file)
   end
 })

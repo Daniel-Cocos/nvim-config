@@ -7,15 +7,15 @@ return {
       },
       colors = {
         palette = {
-          fujiWhite = "#DCD7BA", -- Default foreground [default]
-          oldWhite = "#C8C093", -- Dark foreground (statuslines) [default]
-          sumiInk0 = "#16161D", -- Dark background (statuslines and floating windows) [default]
+          fujiWhite = "#A98FBF", -- Default foreground [changed] #DCD7BA #7FDBFF #CBC3E3
+          oldWhite = "#C8C0FF", -- Dark foreground (statuslines) [changed] #C8C093 #C8C0FF
+          sumiInk0 = "#16161D", -- Dark background (statuslines and floating windows) [default] #16161D
           sumiInk1 = "#1F1F28", -- Default background [default]
           sumiInk2 = "#2A2A37", -- Lighter background (colorcolumn, folds) [default]
           sumiInk3 = "#363646", -- Lighter background (cursorline) [default]
-          sumiInk4 = "#54546D", -- Darker foreground (line numbers, fold column, non-text characters), float borders [default]
-          waveBlue1 = "#223249", -- Popup background, visual selection background [default]
-          waveBlue2 = "#2D4F67", -- Popup selection background, search background [default]
+          sumiInk4 = "#54546D", -- Darker foreground (line numbers, fold column, non-text characters), float borders [default] #54546D
+          waveBlue1 = "#543212", -- Popup background, visual selection background [changed] #223249
+          waveBlue2 = "#2D4F67", -- Popup selection background, search background [default] #2D4F67
           winterGreen = "#2B3328", -- Diff Add (background) [default]
           winterYellow = "#49443C", -- Diff Change (background) [default]
           winterRed = "#43242B", -- Diff Deleted (background) [default]
@@ -27,22 +27,22 @@ return {
           roninYellow = "#FF9E3B", -- Diagnostic Warning [default]
           waveAqua1 = "#6A9589", -- Diagnostic Info [default]
           dragonBlue = "#658594", -- Diagnostic Hint [default]
-          fujiGray = "#727169", -- Comments [default]
+          fujiGray = "#3C5A5A", -- Comments [changed] #727169
           springViolet1 = "#938AA9", -- Light foreground [default]
-          oniViolet = "#957FB8", -- Statements and Keywords [default]
-          crystalBlue = "#7E9CD8", -- Functions and Titles [default]
-          springViolet2 = "#9CABCA", -- Brackets and punctuation [default]
-          springBlue = "#7FB4CA", -- Specials and builtin functions [default]
+          oniViolet = "#FF6961", -- Statements and Keywords [changed] #957FB8
+          crystalBlue = "#7FDBFF", -- Functions and Titles [changed] #7E9CD8 #A6A9B7 [#7FDBFF #8ED8E4 #56C1D6]
+          springViolet2 = "#9CABCA", -- Brackets and punctuation [default] #9CABCA
+          springBlue = "#7FB4CA", -- Specials and builtin functions [default] #7FB4CA
           lightBlue = "#A3D4D5", -- Not used [default]
-          waveAqua2 = "#7AA89F", -- Types [default]
-          springGreen = "#98BB6C", -- Strings [default]
+          waveAqua2 = "#7F66C9", -- Types [changed] #7AA89F #658594 #6BE4E7 #CBC3E3
+          springGreen = "#E58D7F", -- Strings [default] #98BB6C
           boatYellow1 = "#938056", -- Not used [default]
-          boatYellow2 = "#C0A36E", -- Operators, RegEx [default]
-          carpYellow = "#E6C384", -- Identifiers [default]
-          sakuraPink = "#D27E99", -- Numbers [default]
-          waveRed = "#E46876", -- Standout specials 1 (builtin variables) [default]
-          peachRed = "#FF2222", -- Standout specials 2 (exception handling, return) [changed]
-          surimiOrange = "#FFA066", -- Constants, imports, booleans [default]
+          boatYellow2 = "#FF7777", -- Operators, RegEx [changed] #C0A36E
+          carpYellow = "#7A72B8", -- Identifiers [changed] #E6C384 #9B7CE1 
+          sakuraPink = "#957FB8", -- Numbers [changed] #D27E99
+          waveRed = "#FF7777", -- Standout specials 1 (builtin variables) [changed] #E46876
+          peachRed = "#E13C6B", -- Standout specials 2 (exception handling, return) [changed]
+          surimiOrange = "#FFA066", -- Constants, imports, booleans [changed]
           katanaGray = "#717C7C", -- Deprecated [default]
         }
       }
