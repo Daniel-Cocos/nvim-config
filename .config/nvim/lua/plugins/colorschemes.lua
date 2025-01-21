@@ -7,7 +7,7 @@ return {
       },
       colors = {
         palette = {
-          fujiWhite = "#A98FBF", -- Default foreground [changed] #DCD7BA #7FDBFF #CBC3E3
+          fujiWhite = "#FFA500", -- Default foreground [changed] #DCD7BA #7FDBFF #CBC3E3
           oldWhite = "#C8C0FF", -- Dark foreground (statuslines) [changed] #C8C093 #C8C0FF
           sumiInk0 = "#16161D", -- Dark background (statuslines and floating windows) [default] #16161D
           sumiInk1 = "#1F1F28", -- Default background [default]
@@ -31,7 +31,7 @@ return {
           springViolet1 = "#938AA9", -- Light foreground [default]
           oniViolet = "#FF6961", -- Statements and Keywords [changed] #957FB8
           crystalBlue = "#7FDBFF", -- Functions and Titles [changed] #7E9CD8 #A6A9B7 [#7FDBFF #8ED8E4 #56C1D6]
-          springViolet2 = "#9CABCA", -- Brackets and punctuation [default] #9CABCA
+          springViolet2 = "#FFFFFF", -- Brackets and punctuation [default] #9CABCA
           springBlue = "#7FB4CA", -- Specials and builtin functions [default] #7FB4CA
           lightBlue = "#A3D4D5", -- Not used [default]
           waveAqua2 = "#7F66C9", -- Types [changed] #7AA89F #658594 #6BE4E7 #CBC3E3
