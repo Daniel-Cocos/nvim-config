@@ -2,7 +2,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     opts = {
-      transparent = true,
+    transparent = true,
       colors = {
         palette = {
           fujiWhite = "#FFA500", -- Default foreground [changed] #DCD7BA #7FDBFF #CBC3E3
@@ -42,9 +42,32 @@ return {
           peachRed = "#E13C6B", -- Standout specials 2 (exception handling, return) [changed]
           surimiOrange = "#FFA066", -- Constants, imports, booleans [changed]
           katanaGray = "#717C7C", -- Deprecated [default]
+          },
+      },
+      overrides = function(colors)
+        return {
+          -- Set the sidebar, line numbers, and fold column to transparent
+          LineNr = { bg = "NONE" },
+          SignColumn = { bg = "NONE" },
+          FoldColumn = { bg = "NONE" },
+          WinSeparator = { bg = "NONE" },
+          -- If you have a statusline or other UI element, you might want to override its background as well
+          StatusLine = { bg = "NONE" },
+          StatusLineNC = { bg = "NONE" },
         }
-      }
-    }
+      end,
+    },
+  },
+
+  {
+  "folke/tokyonight.nvim",
+  opts = {
+    transparent = true,
+    styles = {
+      sidebars = "transparent",
+      floats = "transparent",
+      },
+    },
   },
 
   {
@@ -61,6 +84,5 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-  }
-
+  },
 }
