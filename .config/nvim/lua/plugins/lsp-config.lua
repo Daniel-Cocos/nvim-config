@@ -13,7 +13,7 @@ return {
 					"clangd",
 					"cssls",
 					"html",
-					"jdls",
+					"jdtls",
           "jsonls",
 					"lua_ls",
           "marksman",
