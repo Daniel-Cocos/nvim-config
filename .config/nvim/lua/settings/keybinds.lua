@@ -17,6 +17,9 @@ key.set("n", "<A-w>", ":tabclose<CR>") -- close a tab
 key.set("n", "<A-l>", ":tabn<CR>") -- next tab
 key.set("n", "<A-h>", ":tabp<CR>") -- previous tab
 
+-- Text Manipulation --
+key.set('i', '<C-H>', '<C-W>', { noremap = true, silent = true }) -- ctrl + backspace deletes the word before the cursor in insert mode 
+
 -- Split Windows --
 key.set("n", "<leader>sv", "<C-w>v") -- split window vertically
 key.set("n", "<leader>sh", "<C-w>s") -- split window horizontally

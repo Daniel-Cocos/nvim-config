@@ -2,9 +2,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     opts = {
-      background = {
-        dark = "wave"
-      },
+      transparent = true,
       colors = {
         palette = {
           fujiWhite = "#FFA500", -- Default foreground [changed] #DCD7BA #7FDBFF #CBC3E3

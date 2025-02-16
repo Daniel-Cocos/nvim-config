@@ -14,9 +14,13 @@ return {
 					"cssls",
 					"html",
 					"jdls",
+          "jsonls",
 					"lua_ls",
+          "marksman",
 					"pyright",
 					"sqls",
+          "quick_lint_js",
+          "yamlls",
 				},
 			})
 		end,
@@ -36,9 +40,6 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jdls.setup({
 				capabilities = capabilities,
 			})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
