@@ -1,4 +1,4 @@
-# nvim-config
+# nvim-config (Performance)
 A neovim configuration
 ## Backing up your current NeoVim configuration if you haven't already
 <pre>mv ~/.config/nvim{,.backup} && mv ~/.local/share/nvim{,.backup} && mv ~/.local/state/nvim{,.backup} && mv ~/.cache/nvim{,.backup}</pre>
