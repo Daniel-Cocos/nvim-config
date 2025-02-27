@@ -16,7 +16,7 @@ return {
         { section = "startup" },
         {
           section = "terminal",
-          cmd = "ascii-image-converter ~/.config/nvim/lua/settings/logo.png", --C -c", --for color add -C c as "... -C c"
+          cmd = "ascii-image-converter ~/.config/nvim/lua/settings/logo.png -C -c", --for color add -C c as "... -C c"
           random = 10,
           pane = 2,
           indent = 4,
