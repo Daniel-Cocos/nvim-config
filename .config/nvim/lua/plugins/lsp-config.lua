@@ -39,6 +39,7 @@ return {
           "lua_ls", -- Lua
           "marksman", -- MarkDown
           "pyright",  -- Python
+          "rust_analyzer",  -- Rust
           "sqls", -- SQL
           "ts_ls", -- JavaScript/TypeScript
           "yamlls", -- YAML
@@ -63,6 +64,7 @@ return {
         "lua_ls", -- Lua
         "marksman", -- MarkDown
         "pyright",  -- Python
+        "rust_analyzer", -- Rust
         "sqls", -- SQL
         "yamlls", -- YAML
         "ts_ls" -- JavaScript/TypeScript
