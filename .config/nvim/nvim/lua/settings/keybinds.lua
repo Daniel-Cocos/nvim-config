@@ -46,14 +46,6 @@ key.set("n", "<C-l>", ":wincmd l<CR>") -- navigate right a window
 
 ---- Plugins ----
 
--- LspConfig --
-key.set("n", "K", vim.lsp.buf.hover, {})  -- Show hover information
-key.set("n", "gd", vim.lsp.buf.definition, {})  -- Go to definition
-key.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- Code action
-
--- NoneLs --
-key.set("n", "<leader>gf", vim.lsp.buf.format, {})  -- format code
-
 -- Telescope --
 key.set("n", "<leader>cs", ":Telescope colorscheme<CR>", { noremap = true, silent = true }) -- open color scheme menu
 
