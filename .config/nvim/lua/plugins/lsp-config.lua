@@ -1,5 +1,4 @@
 return {
-  -- Mason Setup
   {
     "williamboman/mason.nvim",
     config = function()
@@ -7,70 +6,69 @@ return {
     end,
   },
 
-  -- mason-null-ls Setup (Ensure it's installed before configuring)
   {
-    "jay-babu/mason-null-ls.nvim",  -- Make sure you use the correct plugin name
+    "jay-babu/mason-null-ls.nvim",
     config = function()
       require("mason-null-ls").setup({
+        -- List of tools to ensure are installed
         ensure_installed = {
-          "stylelint",  -- CSS linter
-          "clang-format",  -- C/C++ formatter
-          "black",  -- Python formatter
-          "isort",  -- Python import sorter
-          "pylint",  -- Python linter
-          "stylua",  -- Lua formatter
+          "biome",  -- JavaScript/TypeScript
+          "black",  -- Python
+          "clang-format", -- C/C++
+          "isort",  -- Python
+          "markuplint", -- HTML
+          "pylint", -- Python
+          "stylelint",  -- CSS
+          "stylua", -- Lua
         },
       })
     end,
   },
 
-  -- Mason LSP Config
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
+        -- List of LSP Servers to ensure are installed
         ensure_installed = {
-          "clangd",
-          "cssls",
-          "html",
-          "jdtls",
-          "jsonls",
-          "lua_ls",
-          "marksman",
-          "pyright",
-          "sqls",
-          "ts_ls",
-          "quick_lint_js",
-          "yamlls",
+          "clangd", -- C/C++
+          "cssls",  -- CSS
+          "html",   -- HTML
+          "jdtls",  -- Java
+          "jsonls", -- JSON
+          "lua_ls", -- Lua
+          "marksman", -- MarkDown
+          "pyright",  -- Python
+          "sqls", -- SQL
+          "ts_ls", -- JavaScript/TypeScript
+          "yamlls", -- YAML
         },
       })
     end,
   },
 
-  -- Neovim LSP Config
   {
     "neovim/nvim-lspconfig",
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
-      -- List of LSP servers
+      -- List of LSP servers to be set up
       local servers = {
-        "clangd",
-        "cssls",
-        "html",
-        "jdtls",
-        "jsonls",
-        "lua_ls",
-        "marksman",
-        "pyright",
-        "sqls",
-        "ts_ls",
-        "quick_lint_js",
-        "yamlls",
+        "clangd", -- C/C++
+        "cssls",  -- CSS
+        "html",   -- HTML
+        "jdtls",  -- Java
+        "jsonls", -- JSON
+        "lua_ls", -- Lua
+        "marksman", -- MarkDown
+        "pyright",  -- Python
+        "sqls", -- SQL
+        "yamlls", -- YAML
+        "ts_ls" -- JavaScript/TypeScript
       }
 
-      -- Loop through each server and configure it
+      -- Loop through each server and set it up
       for _, server in ipairs(servers) do
         lspconfig[server].setup({
           capabilities = capabilities,
@@ -79,24 +77,25 @@ return {
     end,
   },
 
-  -- Null-LS configuration for linters and formatters
   {
     "nvimtools/none-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
 
+      -- Set up every linter and formatter
       null_ls.setup({
         sources = {
-          -- Formatting
-          null_ls.builtins.formatting.clang_format,
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.isort,
-          null_ls.builtins.formatting.stylua,
-
-          -- Diagnostics (Linter)
-          null_ls.builtins.diagnostics.mypy,
-          null_ls.builtins.diagnostics.pylint,
-          null_ls.builtins.diagnostics.stylelint,
+          -- Formatters
+          null_ls.builtins.formatting.biome,   -- Formatter/Linter: JavaScript/TypeScript
+          null_ls.builtins.formatting.black,   -- Formatter: Python
+          null_ls.builtins.formatting.clang_format, -- Formatter: C/C++
+          null_ls.builtins.formatting.isort,   -- Formatter: Python (for libarries)
+          null_ls.builtins.formatting.stylua,  -- Formatter: Lua
+          -- Linters
+          null_ls.builtins.diagnostics.markuplint,   -- Linter: HTML
+          null_ls.builtins.diagnostics.mypy,   -- TypeChecker: Python
+          null_ls.builtins.diagnostics.pylint, -- Linter: Python
+          null_ls.builtins.diagnostics.stylelint, -- Linter: CSS
         },
       })
     end,

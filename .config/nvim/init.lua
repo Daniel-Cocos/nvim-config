@@ -34,7 +34,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Load your settings and plugins
+-- Load settings and plugins
 require("settings.options")
 require("settings.keybinds")
 require("lazy").setup("plugins")
@@ -55,9 +55,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
         -- Fallback to tokyodark's color scheme if no file or color scheme is saved
         vim.cmd('colorscheme tokyodark')
       end
-    else
-      -- Fallback to tokyodark's if the file doesn't exist
-      vim.cmd('colorscheme tokyodark')
     end
   end
 })

@@ -47,9 +47,9 @@ key.set("n", "<C-l>", ":wincmd l<CR>") -- navigate right a window
 ---- Plugins ----
 
 -- LspConfig --
-key.set("n", "K", vim.lsp.buf.hover, {})  -- Show hover information
-key.set("n", "gd", vim.lsp.buf.definition, {})  -- Go to definition
-key.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- Code action
+key.set("n", "K", vim.lsp.buf.hover, {})  -- show hover information
+key.set("n", "gd", vim.lsp.buf.definition, {})  -- go to definition
+key.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- code action
 
 -- NoneLs --
 key.set("n", "<leader>gf", vim.lsp.buf.format, {})  -- format code
