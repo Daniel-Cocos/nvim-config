@@ -66,8 +66,8 @@ return {
         "pyright",  -- Python
         "rust_analyzer", -- Rust
         "sqls", -- SQL
+        "ts_ls", -- JavaScript/TypeScript
         "yamlls", -- YAML
-        "ts_ls" -- JavaScript/TypeScript
       }
 
       -- Loop through each server and set it up
@@ -95,8 +95,7 @@ return {
           null_ls.builtins.formatting.stylua,  -- Formatter: Lua
           -- Linters
           null_ls.builtins.diagnostics.markuplint,   -- Linter: HTML
-          null_ls.builtins.diagnostics.mypy,   -- TypeChecker: Python
-          null_ls.builtins.diagnostics.pylint, -- Linter: Python
+          null_ls.builtins.diagnostics.pylint,   -- Linter: Python
           null_ls.builtins.diagnostics.stylelint, -- Linter: CSS
         },
       })

@@ -1,4 +1,10 @@
 local opt = vim.opt
+local signs = {
+  Error = " ",
+  Warn = "",
+  Info = "",
+  Hint = "",
+}
 
 -- Line Wrap --
 opt.wrap = false
@@ -36,3 +42,22 @@ opt.clipboard:append("unnamedplus")
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Diagnostic
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "■", -- "●", "■", "▶"
+    spacing = 4,
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = signs.Error,
+      [vim.diagnostic.severity.WARN] = signs.Warn,
+      [vim.diagnostic.severity.INFO] = signs.Info,
+      [vim.diagnostic.severity.HINT] = signs.Hint,
+    },
+  },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})

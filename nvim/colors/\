@@ -1,0 +1,155 @@
+-- Enable true color support
+vim.o.termguicolors = true
+vim.o.background = "dark"
+
+-- Clear any existing highlights and reset syntax
+vim.cmd([[hi clear]])
+if vim.fn.exists("syntax_on") then
+  vim.cmd([[syntax reset]])
+end
+
+-- All colors used
+local colors = {
+  black           = "#000000",
+  blushVeil           = "#EAC3CB",
+  dustyPetal      = "#D59CA4",
+  fujiWhite      = "#D0D0D0",
+  sumiInk1       = "#1F1F28",
+  sumiInk2       = "#2A2A37",
+  sumiInk3       = "#363646", -- not used
+  waveBlue1      = "#543212",
+  waveBlue2      = "#2D4F67",
+  samuraiRed     = "#E82424",
+  waveAqua1      = "#6A9589", -- not used
+  dragonBlue     = "#658594",
+  springViolet1  = "#938AA9",
+  crystalPink    = "#A86E87",
+  dustyPlum       = "#7E4C57", -- not used
+  springBlue     = "#7FB4CA", -- not used
+  springLilac    = "#9E9BC6",
+  softPurple1     = "#176E8E",
+  deepLilac      = "#8972C6",
+  waveRed        = "#FF7777",
+  peachRed       = "#E13C6B",
+  gitAdd         = "#98BE65",
+  gitChange      = "#51AFEF",
+  gitDelete      = "#FF6C6B",
+  seafoamGreen   = "#6EA88F",
+  softPurple     = "#A86E87",
+  hazardOrange    = "#FF9E3B",
+  mutedTeal       = "#3BA7A4",
+  faddedIndigo    = "#4C5C68",
+  rosewoodMist    = "#B36A68",
+}
+vim.api.nvim_set_hl(0, "NotifyBackground", { bg = colors.white })
+
+-- Helper to set highlight groups (bg=true => "NONE")
+local function hi(group, opts)
+  if opts.bg == true then opts.bg = "NONE" end
+  vim.api.nvim_set_hl(0, group, opts)
+end
+
+-- =============================================================================
+-- UI Core
+-- =============================================================================
+
+hi("Normal",        { fg = colors.fujiWhite, bg = true })
+hi("NormalFloat",   { fg = colors.fujiWhite, bg = true })
+hi("SignColumn",    { bg = true })
+hi("CursorLine",    { bg = "None" })
+hi("ColorColumn",   { bg = colors.sumiInk2 })
+hi("LineNr",        { fg = colors.fujiWhite, bg = true })
+hi("CursorLineNr",  { fg = colors.waveAqua1, bg = "None" })
+hi("VertSplit",     { fg = colors.fujiWhite, bg = true })
+
+-- =============================================================================
+-- Popup and Completion Menu
+-- =============================================================================
+
+hi("Pmenu",         { fg = colors.fujiWhite, bg = colors.waveBlue1 })
+hi("PmenuSel",      { fg = colors.sumiInk1, bg = colors.waveBlue2 })
+hi("PmenuSbar",     { bg = colors.waveBlue1 })
+hi("PmenuThumb",    { bg = colors.waveBlue2 })
+
+-- =============================================================================
+-- Search and Match
+-- =============================================================================
+
+hi("Search",        { fg = colors.fujiWhite, bg = colors.waveBlue2 })
+hi("IncSearch",     { fg = colors.sumiInk1, bg = colors.waveBlue2 })
+hi("MatchParen",    { fg = colors.springViolet1, bg = colors.sumiInk2 })
+
+-- =============================================================================
+-- LSP Diagnostics
+-- =============================================================================
+
+hi("DiagnosticError",   { fg = colors.samuraiRed })
+hi("DiagnosticWarn",    { fg = colors.hazardOrange })
+hi("DiagnosticInfo",    { fg = colors.mutedTeal })
+hi("DiagnosticHint",    { fg = colors.dragonBlue })
+
+hi("DiagnosticVirtualTextError", { fg = colors.samuraiRed, bg = true })
+hi("DiagnosticVirtualTextWarn",  { fg = colors.hazardOrange, bg = true })
+hi("DiagnosticVirtualTextInfo",  { fg = colors.mutedTeal, bg = true })
+hi("DiagnosticVirtualTextHint",  { fg = colors.dragonBlue, bg = true })
+
+hi("DiagnosticUnderlineError", { sp = colors.samuraiRed, underline = true })
+hi("DiagnosticUnderlineWarn",  { sp = colors.hazardOrange, underline = true })
+hi("DiagnosticUnderlineInfo",  { sp = colors.mutedTeal, underline = true })
+hi("DiagnosticUnderlineHint",  { sp = colors.dragonBlue, underline = true })
+
+hi("DiagnosticSignError", { fg = colors.samuraiRed })
+hi("DiagnosticSignWarn",  { fg = colors.hazardOrange })
+hi("DiagnosticSignInfo",  { fg = colors.mutedTeal })
+hi("DiagnosticSignHint",  { fg = colors.dragonBlue })
+
+-- =============================================================================
+-- Git Signs
+-- =============================================================================
+
+hi("GitSignsAdd",    { fg = colors.gitAdd, bg = true })
+hi("GitSignsChange", { fg = colors.gitChange, bg = true })
+hi("GitSignsDelete", { fg = colors.gitDelete, bg = true })
+
+-- =============================================================================
+-- Tree-sitter Syntax
+-- =============================================================================
+
+hi("@keyword",          { fg = colors.softPurple, bold = true })  -- All keywords
+hi("@keyword.import",   { fg = colors.softPurple, bold = true })  -- import keyword
+hi("@keyword.class",    { fg = colors.rosewoodMist }) -- `class`, `interface`
+hi("@type",             { fg = colors.dustyPetal }) -- User-defined types (e.g., `String`)
+hi("@type.builtin",     { fg = colors.deepLilac, bold = true }) -- Built-in types (`int`, `float`)
+hi("@function",         { fg = colors.crystalPink })  -- Function names
+hi("@method",           { fg = colors.black })  -- Method calls
+hi("@parameter",        { fg = colors.black })  -- Parameters
+hi("@variable",         { fg = colors.blushVeil, bold = true })  -- Local variables
+hi("@field",            { fg = colors.black })  -- Object fields
+hi("@property",         { fg = colors.softPurple1 }) -- Properties
+hi("@string",           { fg = colors.seafoamGreen }) -- Strings
+hi("@number",           { fg = colors.springLilac, bold = true }) -- Numbers
+hi("@boolean",          { fg = colors.peachRed }) -- Booleans
+hi("@constant",         { fg = colors.springLilac, bold = true }) -- Constants
+hi("@operator",         { fg = colors.waveRed, bold = true }) -- Operators
+hi("@punctuation",      { fg = colors.dustyPetal }) -- Brackets, commas
+hi("@comment",          { fg = colors.faddedIndigo, italic = true })  -- Comments
+
+-- =============================================================================
+-- Lualine / Autocompletions
+-- =============================================================================
+hi("StatusLine",   { fg = colors.fujiWhite, bg = "NONE" })  -- Main Lualine
+hi("StatusLineNC", { fg = colors.fujiWhite,  bg = "NONE" }) -- Second Lualine
+
+hi("FloatBorder", { fg = colors.fujiWhite, bg = true }) -- CMP Border
+hi("CmpCursorLine", { fg = colors.gitAdd, bg = "NONE" }) -- CMP Select
+hi("CmpItemKindFunction", { fg = colors.crystalPink })  -- or any color you like
+hi("CmpItemKindKeyword",  { fg = colors.springLilac })
+hi("CmpItemKindVariable", { fg = colors.blushVeil })
+hi("CmpItemKindConstant", { fg = colors.peachRed })
+hi("CmpItemKindClass",    { fg = colors.deepLilac })
+
+hi("TelescopeSelection", { fg = colors.gitAdd, bg = "NONE", bold = true }) -- Telescope Select
+hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" }) -- Telescope Unselected Options
+
+-- Colorscheme Name
+vim.g.colors_name = "vibecoder"
