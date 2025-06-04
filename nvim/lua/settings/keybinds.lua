@@ -61,6 +61,16 @@ key.set("n", "<leader>t", function()
   print("Inline diagnostics " .. status)
 end, { desc = "Toggle inline diagnostics" })
 
+---- Yank ----
+-- Highlight When Yanking
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("Highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
 ---- Plugins ----
 -- GitSigns --
 key.set("n", "<leader>gt", ":Gitsigns toggle_signs<CR>", {})
