@@ -97,6 +97,14 @@ hi("IncSearch",     { fg = colors.sumiInk1, bg = colors.waveBlue2 })
 hi("MatchParen",    { fg = colors.springViolet1, bg = colors.sumiInk2 })
 
 -- =============================================================================
+-- Tabs
+-- =============================================================================
+
+hi("TabLineSel", { fg = colors.white, bg = "NONE", bold = true }) -- Active tab
+hi("TabLine", { fg = colors.fujiWhite, bg = "NONE" }) -- Inactive tab
+hi("TabLineFill", { fg = "NONE", bg = "NONE" }) -- Filler space
+
+-- =============================================================================
 -- LSP Diagnostics
 -- =============================================================================
 
@@ -172,7 +180,8 @@ hi("CmpItemAbbr", { fg = colors.springBlue })  -- Unselected item text
 hi("CmpItemAbbrMatch", { fg = colors.ivoryMist, bold = true }) -- Matching text
 hi("CmpItemMenu", { fg = colors.dimGray }) -- Source label
 hi("CmpItemKindFunction", { fg = colors.dustyPetal }) -- CMP Function
-hi("CmpItemKindField", { fg = colors.dustyPetal }) -- CMP Function
+hi("CmpItemKindMethod", { fg = colors.dustyPetal }) -- CMP Method
+hi("CmpItemKindField", { fg = colors.dustyPetal }) -- CMP Field
 hi("CmpItemKindKeyword",  { fg = colors.dustyPetal }) -- CMP Keyword
 hi("CmpItemKindVariable", { fg = colors.dustyPetal }) -- CMP Variable
 hi("CmpItemKindConstant", { fg = colors.dustyPetal }) -- CMP Constant
@@ -237,5 +246,4 @@ hi("StatusLineNC", { fg = colors.ivoryMist,  bg = "NONE" }) -- Second Lualine
 hi("TelescopeSelection", { fg = colors.ivoryMist, bg = "NONE", bold = true }) -- Telescope Select
 hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" }) -- Telescope Unselected Options
 
--- Colorscheme Name
-vim.g.colors_name = "cottoncandy"
+vim.g.colors_name = "cottoncandy" -- Colorscheme Name

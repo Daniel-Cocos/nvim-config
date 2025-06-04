@@ -55,6 +55,7 @@ require("lazy").setup({
   {import = "plugins/navigation"},
   {import = "plugins/other"},
 })
+require("settings.tabline")
 
 -- Autocommand to restore the color scheme after plugins are loaded
 vim.api.nvim_create_autocmd('VimEnter', {

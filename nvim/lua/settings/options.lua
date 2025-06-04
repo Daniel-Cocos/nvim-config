@@ -1,9 +1,9 @@
 local opt = vim.opt
 local signs = {
-  Error = " ",
-  Warn = "",
-  Info = "",
-  Hint = "",
+  Error = "󰅚",
+  Warn = "󰀪",
+  Info = "󰋽",
+  Hint = "󰌶",
 }
 
 -- Line Wrap --
@@ -42,6 +42,9 @@ opt.clipboard:append("unnamedplus")
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Tabs --
+vim.o.tabline = "%!v:lua.my_tabline()"
 
 -- Diagnostic
 vim.diagnostic.config({
