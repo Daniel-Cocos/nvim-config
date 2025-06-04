@@ -1,5 +1,5 @@
 # nvim-config
-Personal Neovim configuration tailored for efficiency and scalability
+Personal neovim configuration tailored for efficiency and scalability
 ## Backing up your current NeoVim configuration if you haven't already
 <pre>mv ~/.config/nvim{,.backup} && mv ~/.local/share/nvim{,.backup} && mv ~/.local/state/nvim{,.backup} && mv ~/.cache/nvim{,.backup}</pre>
 ## Getting my NeoVim configuration
