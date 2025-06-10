@@ -33,6 +33,7 @@ return {
         ensure_installed = {
           "clangd", -- C/C++
           "cssls",  -- CSS
+          "gopls",  -- GO
           "html",   -- HTML
           "jdtls",  -- Java
           "jsonls", -- JSON

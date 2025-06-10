@@ -184,6 +184,7 @@ hi("CmpItemKindMethod", { fg = colors.dustyPetal }) -- CMP Method
 hi("CmpItemKindField", { fg = colors.dustyPetal }) -- CMP Field
 hi("CmpItemKindKeyword",  { fg = colors.dustyPetal }) -- CMP Keyword
 hi("CmpItemKindVariable", { fg = colors.dustyPetal }) -- CMP Variable
+hi("CmpItemKindValue", { fg = colors.dustyPetal }) -- CMP Variable
 hi("CmpItemKindConstant", { fg = colors.dustyPetal }) -- CMP Constant
 hi("CmpItemKindClass",    { fg = colors.dustyPetal }) -- CMP Class
 hi("CmpItemKindText",    { fg = colors.dustyPetal })  -- CMP Text
