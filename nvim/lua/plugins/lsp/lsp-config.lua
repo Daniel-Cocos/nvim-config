@@ -75,6 +75,11 @@ return {
       for _, server in ipairs(servers) do
         lspconfig[server].setup({
           capabilities = capabilities,
+          settings = {
+            telemetry = {
+              enable = false,
+            }
+          }
         })
       end
     end,

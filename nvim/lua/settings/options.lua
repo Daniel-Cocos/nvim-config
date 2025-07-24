@@ -1,4 +1,4 @@
-local opt = vim.opt
+local vim = vim
 local signs = {
   Error = "󰅚",
   Warn = "󰀪",
@@ -6,47 +6,56 @@ local signs = {
   Hint = "󰌶",
 }
 
--- Line Wrap --
-opt.wrap = false
+-- Basic settings
+vim.opt.number = true         -- Line numbers
+vim.opt.relativenumber = true -- Relative line numbers
+vim.opt.cursorline = false    -- Highlight current line
+vim.opt.wrap = false          -- Don't wrap lines
+vim.opt.scrolloff = 0         -- Keep min 0 lines above/below cursor when scrolling
+vim.opt.sidescrolloff = 0     -- Keep min 0 columns left/right of cursor when scrolling
 
--- Cursorline --
-opt.cursorline = true
+-- Line Wrap
+vim.opt.wrap = false
 
--- Searching --
-opt.smartcase = true
-opt.ignorecase = true
+-- Cursorline
+vim.opt.cursorline = true
 
--- Indentation --
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.autoindent = true
-opt.bo.softtabstop = 2
+-- Searching
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
 
--- Apperance --
-opt.showmode = false
-opt.background = "dark"
-opt.termguicolors = true
+-- Indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.bo.softtabstop = 2
 
--- Line Numbers --
-opt.relativenumber = true
+-- Apperance
+vim.opt.showmode = false
+vim.opt.background = "dark"
+vim.opt.termguicolors = true
 
--- Split Windows -- 
-opt.splitright = true
-opt.splitbelow = true
+-- Split Windows
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
--- Clipboard --
-opt.clipboard:append("unnamedplus")
+-- Clipboard
+vim.opt.clipboard:append("unnamedplus")
 
--- Folding -- 
-opt.foldlevel = 20
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- Folding
+vim.opt.foldlevel = 20
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
--- Tabs --
+-- File Handling
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
+
+-- Tabs
 vim.o.tabline = "%!v:lua.my_tabline()"
 
--- Diagnostic
+-- Diagnostic Appearance
 vim.diagnostic.config({
   virtual_text = {
     prefix = "■", -- "●", "■", "▶"
