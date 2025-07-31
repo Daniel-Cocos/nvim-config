@@ -14,9 +14,6 @@ vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 0         -- Keep min 0 lines above/below cursor when scrolling
 vim.opt.sidescrolloff = 0     -- Keep min 0 columns left/right of cursor when scrolling
 
--- Line Wrap
-vim.opt.wrap = false
-
 -- Cursorline
 vim.opt.cursorline = true
 
