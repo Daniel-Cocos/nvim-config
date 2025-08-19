@@ -21,8 +21,8 @@ vim.keymap.set("n", "<leader>wq", ":wqa<CR>") -- write&quit all
 -- Tab Management --
 vim.keymap.set("n", "<A-n>", ":tabnew<CR>") -- open a new tab
 vim.keymap.set("n", "<A-w>", ":tabclose<CR>") -- close current tab
-vim.keymap.set("n", "<A-l>", ":tabn<CR>") -- next tab
-vim.keymap.set("n", "<A-h>", ":tabp<CR>") -- previous tab
+vim.keymap.set("n", "<C-l>", ":tabn<CR>") -- next tab
+vim.keymap.set("n", "<C-h>", ":tabp<CR>") -- previous tab
 vim.keymap.set("n", "<A-1>", ":tabn 1<CR>") -- go to the 1st tab
 vim.keymap.set("n", "<A-2>", ":tabn 2<CR>") -- go to the 2nd tab
 vim.keymap.set("n", "<A-3>", ":tabn 3<CR>") -- go to the 3rd tab

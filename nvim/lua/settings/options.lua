@@ -7,7 +7,7 @@ local signs = {
 }
 
 -- Basic settings
-vim.opt.number = true         -- Line numbers
+vim.opt.number = false        -- Line numbers
 vim.opt.relativenumber = true -- Relative line numbers
 vim.opt.cursorline = false    -- Highlight current line
 vim.opt.wrap = false          -- Don't wrap lines
