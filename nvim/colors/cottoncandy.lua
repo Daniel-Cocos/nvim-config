@@ -152,7 +152,7 @@ hi("@function",         { fg = colors.crystalPink })  -- Function names
 hi("@function.builtin", { fg = colors.springLilac, bold = true }) -- print()
 hi("@function.method",  { fg = colors.coralBlush, bold = true }) -- print()
 hi("@method",           { fg = colors.black })  -- Method calls
-hi("@parameter",        { fg = colors.black })  -- Parameters
+hi("@parameter",        { fg = colors.dragonBlue })  -- Parameters
 hi("@variable",         { fg = colors.blushVeil, bold = true })  -- Variables
 hi("@variable.builtin", { fg = colors.blushVeil })
 hi("@field",            { fg = colors.black })  -- Object fields
