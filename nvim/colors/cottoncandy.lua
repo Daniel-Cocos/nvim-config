@@ -258,6 +258,7 @@ hi("StatusLineNC", { fg = colors.ivoryMist,  bg = "NONE" }) -- Second Lualine
 
 -- Telescope
 hi("TelescopeSelection",  { fg = colors.ivoryMist, bg = "NONE", bold = true }) -- Telescope Select
+hi("TelescopeMatching",   { fg = colors.dragonBlue, bg = "NONE", bold = true }) -- Telescope Select
 hi("TelescopeNormal",     { fg = colors.fujiWhite, bg = "NONE" }) -- Telescope Unselected Options
 
 vim.g.colors_name = "cottoncandy" -- Colorscheme Name
