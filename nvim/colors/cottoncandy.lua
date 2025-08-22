@@ -180,24 +180,30 @@ hi("@tag.delimiter",    { fg = colors.faddedIndigo})  -- HTML tags
 -- =============================================================================
 
 -- CMP
-hi("FloatBorder",         { fg = colors.ivoryMist, bg = true }) -- CMP Border
-hi("CmpCursorLine",       { fg = colors.white, bg = "NONE", bold = true }) -- CMP Select
-hi("CmpItemAbbr",         { fg = colors.springBlue })  -- Unselected item text
-hi("CmpItemAbbrMatch",    { fg = colors.ivoryMist, bold = true }) -- Matching text
-hi("CmpItemMenu",         { fg = colors.dimGray }) -- Source label
-hi("CmpItemKindFunction", { fg = colors.dustyPetal }) -- CMP Function
-hi("CmpItemKindMethod",   { fg = colors.dustyPetal }) -- CMP Method
-hi("CmpItemKindField",    { fg = colors.dustyPetal }) -- CMP Field
-hi("CmpItemKindKeyword",  { fg = colors.dustyPetal }) -- CMP Keyword
-hi("CmpItemKindVariable", { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindValue",    { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindColor",    { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindConstant", { fg = colors.dustyPetal }) -- CMP Constant
-hi("CmpItemKindClass",    { fg = colors.dustyPetal }) -- CMP Class
-hi("CmpItemKindText",     { fg = colors.dustyPetal })  -- CMP Text
-hi("CmpItemKindSnippet",  { fg = colors.dustyPetal })  -- CMP Snippet
-hi("CmpItemKindEnum",     { fg = colors.dustyPetal }) -- CMP Enum
-hi("CmpItemKindProperty", { fg = colors.dustyPetal }) -- CMP Enum
+hi("FloatBorder",             { fg = colors.ivoryMist, bg = true }) -- CMP Border
+hi("CmpCursorLine",           { fg = colors.white, bg = "NONE", bold = true }) -- CMP Select
+hi("CmpItemAbbr",             { fg = colors.springBlue })  -- Unselected item text
+hi("CmpItemAbbrMatch",        { fg = colors.ivoryMist, bold = true }) -- Matching text
+hi("CmpItemMenu",             { fg = colors.dimGray }) -- Source label
+hi("CmpItemKindFunction",     { fg = colors.dustyPetal }) -- CMP Function
+hi("CmpItemKindMethod",       { fg = colors.dustyPetal }) -- CMP Method
+hi("CmpItemKindField",        { fg = colors.dustyPetal }) -- CMP Field
+hi("CmpItemKindKeyword",      { fg = colors.dustyPetal }) -- CMP Keyword
+hi("CmpItemKindVariable",     { fg = colors.dustyPetal }) -- CMP Variable
+hi("CmpItemKindValue",        { fg = colors.dustyPetal }) -- CMP Variable
+hi("CmpItemKindColor",        { fg = colors.dustyPetal }) -- CMP Variable
+hi("CmpItemKindConstant",     { fg = colors.dustyPetal }) -- CMP Constant
+hi("CmpItemKindConstructor",  { fg = colors.dustyPetal }) -- CMP Constructor
+hi("CmpItemKindClass",        { fg = colors.dustyPetal }) -- CMP Class
+hi("CmpItemKindEnum",         { fg = colors.dustyPetal }) -- CMP Enum
+hi("CmpItemKindEnumMember",   { fg = colors.dustyPetal }) -- CMP EnumMember
+hi("CmpItemKindText",         { fg = colors.dustyPetal })  -- CMP Text
+hi("CmpItemKindSnippet",      { fg = colors.dustyPetal })  -- CMP Snippet
+hi("CmpItemKindStruct",       { fg = colors.dustyPetal })  -- CMP Struct
+hi("CmpItemKindInterface",    { fg = colors.dustyPetal })  -- CMP Interface
+hi("CmpItemKindModule",       { fg = colors.dustyPetal })  -- CMP Module
+hi("CmpItemKindProperty",     { fg = colors.dustyPetal }) -- CMP Property
+hi("CmpItemKindReference",    { fg = colors.dustyPetal }) -- CMP Reference
 
 -- Noice
 hi("NoiceCmdline",              { fg = colors.white, bg = "NONE" }) -- Main text typed in the command line popup
