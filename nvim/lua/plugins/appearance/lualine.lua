@@ -180,8 +180,7 @@ return {
         },
 
         lualine_z = {
-          { '%l:%c',   color = { fg = colors.ivoryMist, bg = 'NONE' } },
-          { '%p%%/%L', color = { fg = colors.ivoryMist, bg = 'NONE' } },
+          { '%l/%L', color = { fg = colors.ivoryMist, bg = 'NONE' } },
         },
       },
 
