@@ -4,8 +4,12 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
 	config = function()
 		local builtin = require("telescope.builtin")
-		vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-		vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+		vim.keymap.set('n', '<leader>aa', builtin.find_files, {})
+    vim.keymap.set('n', '<leader>an', function()
+      vim.cmd('tabnew')         -- open a new tab
+      require('telescope.builtin').find_files() -- run Telescope
+    end, {})
+		vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 	end
 	},
 	{

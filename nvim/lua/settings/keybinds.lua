@@ -90,3 +90,7 @@ vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", opts) -- open co
 
 -- TreeSitter --
 vim.keymap.set("n", "<leader>hg", ":TSHighlightCapturesUnderCursor<CR>", {}) -- display highlight group
+
+
+---- Combos ----
+
