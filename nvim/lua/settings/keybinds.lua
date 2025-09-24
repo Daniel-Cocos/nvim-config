@@ -92,5 +92,17 @@ vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", opts) -- open co
 vim.keymap.set("n", "<leader>hg", ":TSHighlightCapturesUnderCursor<CR>", {}) -- display highlight group
 
 
+vim.keymap.set("n", "<leader>fa", function()
+  vim.cmd("tabnew")
+  vim.ui.input({prompt = "New file path: "}, function(input)
+    if not input or input == "" then return end
+    -- create directories if necessary
+    local dir = vim.fn.fnamemodify(input, ":h")
+    if dir ~= "" and vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+    -- create file (if not exists) and open it
+    vim.cmd("edit " .. vim.fn.fnameescape(input))
+  end)
+end, { desc = "New tab + prompt for file path and open it" })
 ---- Combos ----
-

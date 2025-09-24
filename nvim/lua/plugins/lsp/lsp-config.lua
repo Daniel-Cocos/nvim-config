@@ -62,7 +62,6 @@ return {
         "html",   -- HTML
         "jdtls",  -- Java
         "jsonls", -- JSON
-        "lua_ls", -- Lua
         "marksman", -- MarkDown
         "pyright",  -- Python
         "rust_analyzer", -- Rust
