@@ -62,7 +62,7 @@ local config = {
   settings = {
     java = {
       -- TODO Replace this with the absolute path to your main java version (JDK 17 or higher)
-      home = "/usr/lib/jvm/java-23-openjdk",
+      home = "/usr/lib/jvm/java-25-openjdk",
       eclipse = {
         downloadSources = true,
       },
@@ -72,8 +72,8 @@ local config = {
         -- The runtime name parameters need to match specific Java execution environments.  See https://github.com/tamago324/nlsp-settings.nvim/blob/2a52e793d4f293c0e1d61ee5794e3ff62bfbbb5d/schemas/_generated/jdtls.json#L317-L334
         runtimes = {
           {
-            name = "JavaSE-23",
-            path = "/usr/lib/jvm/java-23-openjdk",
+            name = "JavaSE-25",
+            path = "/usr/lib/jvm/java-25-openjdk",
           },
         },
       },
@@ -148,4 +148,5 @@ config["on_attach"] = function(client, bufnr)
 end
 
 -- This starts a new client & server, or attaches to an existing client & server based on the `root_dir`.
-jdtls.start_or_attach(config)
+-- jdtls.start_or_attach(config)
+

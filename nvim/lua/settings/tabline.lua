@@ -1,4 +1,5 @@
 local devicons = require("nvim-web-devicons")
+local vim = vim
 
 -- Get buffer name
 local function buf_name_or_untitled(bufnr)
@@ -37,8 +38,8 @@ function _G.my_tabline()
 
     -- Get the file-type icon and its highlight group
     local icon, icon_hl = devicons.get_icon(fname, ext, { default = true })
-    icon = icon or "" -- Default icon if none found
-    icon_hl = icon_hl or "DevIconDefault" -- Default highlight group
+    icon = icon or ""
+    icon_hl = icon_hl or "DevIconDefault"
 
     -- Apply icon highlight group and append the icon
     s = s .. "%#" .. icon_hl .. "#" .. icon

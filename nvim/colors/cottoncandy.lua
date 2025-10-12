@@ -1,3 +1,6 @@
+-- =============================================================================
+-- Setup
+-- =============================================================================
 -- Enable true color support
 vim.o.termguicolors = true
 vim.o.background = "dark"
@@ -8,8 +11,20 @@ if vim.fn.exists("syntax_on") then
   vim.cmd([[syntax reset]])
 end
 
--- All colors used
+-- =============================================================================
+-- Palette
+-- =============================================================================
 local colors = {
+  pink1 = "#de4d86",
+  cyan1 = "#70e4ef",
+  cyan2 = "#84e6f8",
+  blue1 = "#00509d",
+  pink2 = "#ff36ab",
+  pink3 = "#ff6Bab",
+  yellow1 = "#f5bd1f",
+  purple1 = "#820263",
+  orange1 = "#fb8b24",
+  orange2 = "#ff8000",
   coralBlush = "#D98982",
   black = "#000000",
   blushVeil = "#EC9EAD",
@@ -26,12 +41,8 @@ local colors = {
   dragonBlue = "#658594",
   springViolet1 = "#938AA9",
   crystalPink = "#A86E87",
-  springBlue = "#549CB4",
-  springLilac = "#9E9BC6",
   softPurple1 = "#176E8E",
   deepLilac = "#8972C6",
-  waveRed = "#FF7777",
-  peachRed = "#E13C6B",
   gitAdd = "#98BE65",
   gitChange = "#51AFEF",
   gitDelete = "#FF6C6B",
@@ -42,11 +53,28 @@ local colors = {
   faddedIndigo = "#4C5C68",
   rosewoodMist = "#B36A68",
   charcoalMist = "#2e2e2e",
+
+  peachRed = "#E13C6B",
+  mintGreen = "#6EBB82",
+  waveRed = "#DD5555",
+  springBlue = "#549CB4",
+  sageGreen = "#87A96B",
+  springLilac = "#9E9BC6",
+  goldenYellow = "#E5B567",
+  deepIndigo = "#6B5B95",
+  salmonOrange = "#EC8B5E",
+  warmGray = "#9B8B7E",
+  mossGreen = "#82B894",
+  goldenrod = "#D9B277",
+  aqua = "#66B3B3",
+  deepNavy = "#212629",
+  porcelain = "#D4D9DC",
+  slateComment = "#5C666A",
 }
 
-vim.api.nvim_set_hl(0, "NotifyBackground", { bg = colors.white })
-
--- Set highlight groups (bg=true => "NONE")
+-- =============================================================================
+-- Highlight Function
+-- =============================================================================
 local function hi(group, opts)
   if opts.bg == true then
     opts.bg = "NONE"
@@ -55,201 +83,264 @@ local function hi(group, opts)
 end
 
 -- =============================================================================
--- UI Core
+-- Default Highlights
 -- =============================================================================
-hi("DiffText", { bg = "NONE" })
-hi("DiffAdd", { bg = "NONE" })
-hi("DiffChange", { bg = "NONE" })
-hi("DiffDelete", { bg = "NONE" })
-hi("DiffDelete", { bg = "NONE" })
-hi("ColorColumn", { bg = colors.sumiInk2 })
-hi("CursorColumn", { bg = "NONE" })
-hi("CursorLine", { bg = "None" })
-hi("CursorLineNr", { fg = colors.white, bg = "None", bold = true })
-hi("LineNr", { fg = colors.fujiWhite, bg = true })
-hi("Normal", { fg = colors.fujiWhite, bg = true })
-hi("NormalFloat", { fg = colors.faddedIndigo, bg = true })
-hi("SignColumn", { bg = true })
-hi("VertSplit", { fg = colors.fujiWhite, bg = true })
-hi("Visual", { bg = colors.charcoalMist })
+local function apply_default_highlights()
+  -- UI Core
+  hi("DiffText", { bg = "NONE" })
+  hi("DiffAdd", { bg = "NONE" })
+  hi("DiffChange", { bg = "NONE" })
+  hi("DiffDelete", { bg = "NONE" })
+  hi("ColorColumn", { bg = colors.sumiInk2 })
+  hi("CursorColumn", { bg = "NONE" })
+  hi("CursorLine", { bg = "NONE" })
+  hi("CursorLineNr", { fg = colors.white, bg = "None", bold = true })
+  hi("LineNr", { fg = colors.silverGray, bg = true })
+  hi("Normal", { fg = colors.fujiWhite, bg = true })
+  hi("NormalFloat", { fg = colors.faddedIndigo, bg = "NONE" })
+  hi("SignColumn", { bg = true })
+  hi("VertSplit", { fg = colors.sumiInk2, bg = true })
+  hi("Visual", { bg = colors.charcoalMist })
 
--- Visual Modes Backgorund
--- =============================================================================
--- Command Line Core
--- =============================================================================
-hi("CmdlinePrompt", { fg = colors.white })
-hi("CmdlineCmd", { fg = colors.white })
-hi("CmdlineKey", { fg = colors.white })
+  -- Command Line
+  hi("CmdlinePrompt", { fg = colors.white })
+  hi("CmdlineCmd", { fg = colors.white })
+  hi("CmdlineKey", { fg = colors.white })
+
+  -- Popup and Completion Menu
+  hi("Pmenu", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("PmenuSel", { fg = colors.white, bg = "NONE", bold = true })
+  hi("PmenuSbar", { bg = "NONE" })
+  hi("PmenuThumb", { bg = "NONE" })
+
+  -- Search and Match
+  hi("Search", { fg = colors.fujiWhite, bg = colors.waveBlue2 })
+  hi("IncSearch", { fg = colors.sumiInk1, bg = colors.waveBlue2 })
+  hi("MatchParen", { fg = colors.springViolet1, bg = colors.sumiInk2, bold = true })
+
+  -- Tabs
+  hi("TabLineSel", { fg = colors.white, bg = "NONE", bold = true })
+  hi("TabLine", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("TabLineFill", { bg = "NONE" })
+
+  -- LSP Diagnostics
+  hi("DiagnosticError", { fg = colors.samuraiRed })
+  hi("DiagnosticWarn", { fg = colors.hazardOrange })
+  hi("DiagnosticInfo", { fg = colors.mutedTeal })
+  hi("DiagnosticHint", { fg = colors.dragonBlue })
+  hi("DiagnosticVirtualTextError", { fg = colors.samuraiRed, bg = true })
+  hi("DiagnosticVirtualTextWarn", { fg = colors.hazardOrange, bg = true })
+  hi("DiagnosticVirtualTextInfo", { fg = colors.mutedTeal, bg = true })
+  hi("DiagnosticVirtualTextHint", { fg = colors.dragonBlue, bg = true })
+  hi("DiagnosticUnderlineError", { sp = colors.samuraiRed, underline = true })
+  hi("DiagnosticUnderlineWarn", { sp = colors.hazardOrange, underline = true })
+  hi("DiagnosticUnderlineInfo", { sp = colors.mutedTeal, underline = true })
+  hi("DiagnosticUnderlineHint", { sp = colors.dragonBlue, underline = true })
+  hi("DiagnosticSignError", { fg = colors.samuraiRed })
+  hi("DiagnosticSignWarn", { fg = colors.hazardOrange })
+  hi("DiagnosticSignInfo", { fg = colors.mutedTeal })
+  hi("DiagnosticSignHint", { fg = colors.dragonBlue })
+
+  -- Git Signs
+  hi("GitSignsAdd", { fg = colors.gitAdd, bg = true })
+  hi("GitSignsChange", { fg = colors.gitChange, bg = true })
+  hi("GitSignsDelete", { fg = colors.gitDelete, bg = true })
+
+  -- Tree-sitter Syntax (Default)
+  hi("@variable", { fg = colors.springBlue })
+  hi("@variable.builtin", { fg = colors.peachRed, bold = true })
+  hi("@parameter", { fg = colors.dragonBlue })
+  hi("@field", { fg = colors.crystalPink })
+  hi("@property", { fg = colors.springBlue })
+  hi("@constant", { fg = colors.coralBlush }) -- TEMP
+  hi("@constant.builtin", { fg = colors.coralBlush, bold = true })
+  hi("@function", { fg = colors.silverGray })
+  --hi("@function.builtin", { fg = colors.peachRed, bold = true })
+  --hi("@function.method", { fg = colors.softPurple })
+  --hi("@function.method.call", { fg = colors.softPurple, bold = true })
+  hi("@constructor", { fg = colors.softPurple })
+  hi("@type", { fg = colors.pink3 })
+  hi("@type.builtin", { fg = colors.pink3, bold = true })
+  hi("@attribute", { fg = colors.hazardOrange })
+  hi("@keyword", { fg = colors.samuraiRed, bold = true })
+  --hi("@keyword.import", { fg = colors.peachRed, bold = true })
+  --hi("@keyword.return", { fg = colors.peachRed, bold = true })
+  -- hi("@keyword.function", { fg = colors.weepLilac, bold = true })
+  --hi("@keyword.modifier", { fg = colors.springViolet1 })
+  --hi("@keyword.class", { fg = colors.rosewoodMist })
+  hi("@operator", { fg = colors.salmonOrange, bold = true })
+  hi("@punctuation", { fg = colors.silverGray })
+  hi("@string", { fg = colors.seafoamGreen })
+  hi("@character", { fg = colors.seafoamGreen })
+  hi("@string.escape", { fg = colors.seafoamGreen })
+  hi("@number", { fg = colors.pink2, bold = true })
+  hi("@boolean", { fg = colors.peachRed, bold = true })
+  hi("@comment", { fg = colors.faddedIndigo, italic = true })
+  hi("@spell", { fg = colors.faddedIndigo, italic = true })
+  hi("@tag", { fg = colors.crystalPink })
+  --hi("@tag.attribute", { fg = colors.springLilac })
+  --hi("@tag.builtin", { fg = colors.crystalPink })
+  --hi("@tag.delimiter", { fg = colors.faddedIndigo })
+  --hi("@markup.heading", { fg = colors.dragonBlue })
+  --hi("@markup.raw.block", { fg = colors.seafoamGreen, bg = "None", bold = true })
+  hi("@module", { fg = colors.crystalPink, bg = "None" })
+
+  -- Other Plugins
+  -- CMP, Noice, LuaLine, Telescope
+  hi("FloatBorder", { fg = colors.ivoryMist, bg = true })
+  hi("CmpCursorLine", { fg = colors.white, bg = "NONE", bold = true })
+  hi("CmpItemAbbr", { fg = colors.springBlue })
+  hi("CmpItemAbbrMatch", { fg = colors.ivoryMist, bold = true })
+  hi("CmpItemMenu", { fg = colors.silverGray })
+  hi("CmpItemKindFunction", { fg = colors.dustyPetal })
+  hi("CmpItemKindMethod", { fg = colors.dustyPetal })
+  hi("CmpItemKindField", { fg = colors.crystalPink })
+  hi("CmpItemKindFile", { fg = colors.fujiWhite })
+  hi("CmpItemKindFolder", { fg = colors.dragonBlue })
+  hi("CmpItemKindKeyword", { fg = colors.softPurple })
+  hi("CmpItemKindVariable", { fg = colors.blushVeil })
+  hi("CmpItemKindValue", { fg = colors.peachRed })
+  hi("CmpItemKindColor", { fg = colors.fujiWhite })
+  hi("CmpItemKindConstant", { fg = colors.springLilac })
+  hi("CmpItemKindConstructor", { fg = colors.rosewoodMist })
+  hi("CmpItemKindClass", { fg = colors.rosewoodMist })
+  hi("CmpItemKindEnum", { fg = colors.deepLilac })
+  hi("CmpItemKindEnumMember", { fg = colors.deepLilac })
+  hi("CmpItemKindText", { fg = colors.fujiWhite })
+  hi("CmpItemKindSnippet", { fg = colors.seafoamGreen })
+  hi("CmpItemKindStruct", { fg = colors.deepLilac })
+  hi("CmpItemKindInterface", { fg = colors.deepLilac })
+  hi("CmpItemKindModule", { fg = colors.softPurple })
+  hi("CmpItemKindProperty", { fg = colors.springBlue })
+  hi("CmpItemKindReference", { fg = colors.fujiWhite })
+
+  hi("StatusLine", { fg = colors.ivoryMist, bg = "NONE" })
+  hi("StatusLineNC", { fg = colors.silverGray, bg = "NONE" })
+
+  hi("TelescopeSelection", { bg = "NONE", bold = true })
+  hi("TelescopeMatching", { fg = colors.hazardOrange, bold = true })
+  hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("TelescopeBorder", { fg = colors.white, bg = "NONE" })
+
+  hi("NotifyBackground", { bg = colors.white })
+end
 
 -- =============================================================================
--- Popup and Completion Menu
+-- Language-Specific Overrides
 -- =============================================================================
-hi("Pmenu", { fg = colors.fujiWhite, bg = "NONE" })
-hi("PmenuSel", { fg = colors.white, bg = "NONE", bold = true })
-hi("PmenuSbar", { bg = colors.waveBlue1 })
-hi("PmenuThumb", { bg = colors.waveBlue2 })
+local language_overrides = {
+  --c = {
+    --["@keyword.import"] = { fg = colors.samuraiRed }, -- #include, #define
+    --["@type.builtin"] = { fg = colors.springBlue, bold = true }, -- int, char, void
+    --["@constant.builtin"] = { fg = colors.peachRed }, -- NULL, TRUE, FALSE
+    --["@operator"] = { fg = colors.waveRed }, -- *, ->, &
+  --},
+  --cpp = {
+    --["@keyword.import"] = { fg = colors.samuraiRed }, -- #include, #define
+    --["@type.builtin"] = { fg = colors.springBlue, bold = true }, -- int, char, void
+    --["@constructor"] = { fg = colors.dustyPetal, italic = true }, -- Class constructors
+    --["@keyword.class"] = { fg = colors.deepLilac }, -- class, struct
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this
+  --},
+  -- CSS: Differentiate properties, selectors, and values
+  --css = {
+    --["@tag"] = { fg = colors.dragonBlue, bold = true }, -- Tag selectors (div, p)
+    --["@property"] = { fg = colors.blushVeil }, -- color, font-size
+    --["@constant"] = { fg = colors.crystalPink }, -- IDs (#main)
+    --["@variable"] = { fg = colors.coralBlush }, -- Classes (.container)
+    --["@constant.builtin"] = { fg = colors.peachRed }, -- Units (px, em, rem)
+    --["@string"] = { fg = colors.seafoamGreen }, -- "string values"
+  --},
+  -- HTML: Tags and attributes
+  --html = {
+    --["@tag"] = { fg = colors.coralBlush },
+    --["@tag.attribute"] = { fg = colors.springBlue, italic = true },
+    --["@tag.delimiter"] = { fg = colors.faddedIndigo },
+  --},
+  -- Lua: Keywords and table-related syntax
+  --lua = {
+    --["@keyword.function"] = { fg = colors.softPurple, bold = true },
+    --["@keyword"] = { fg = colors.springViolet1 }, -- local, if, for, end
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- self
+    --["@function"] = { fg = colors.springBlue },
+    --["@punctuation"] = { fg = colors.fujiWhite }, -- Brackets for tables
+  --},
+  -- Python: Keywords, decorators, and self
+  python = {
+    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- def, class, if
+    --["@attribute"] = { fg = colors.hazardOrange, italic = true }, -- @decorators
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- self
+    --["@type"] = { fg = colors.springBlue },
+    --["@function"] = { fg = colors.coralBlush },
+    ["@function.builtin"] = { fg = colors.peachRed, bold = true },
+  },
+  -- SQL: Make keywords stand out
+  --sql = {
+    --["@keyword"] = { fg = colors.dragonBlue, bold = true }, -- SELECT, FROM, WHERE
+    --["@function"] = { fg = colors.springLilac }, -- COUNT(), MAX()
+    --["@variable"] = { fg = colors.fujiWhite }, -- table_names, column_names
+    --["@operator"] = { fg = colors.waveRed, bold = false },
+  --},
+  markdown = {
+    ["@spell"] = { fg = colors.white },
+    ["@markup.heading"] = { fg = colors.white, bold = true },
+    ["@markup.raw.block"] = { fg = colors.seafoamGreen, bg = "NONE" }, -- Code blocks
+    ["@markup.strong"] = { fg = colors.peachRed, bold = true }, -- Bold
+    ["@markup.italic"] = { fg = colors.white, italic = true }, -- Italic
+    ["@markup.link.url"] = { fg = colors.springBlue, underline = true },
+  },
+  --java = {
+    --["@keyword.modifier"] = { fg = colors.samuraiRed }, -- public, static, final
+    --["@type"] = { fg = colors.rosewoodMist, bold = true }, -- Class names
+    --["@attribute"] = { fg = colors.hazardOrange, italic = true }, -- @Annotations
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this, super
+    --["@type.builtin"] = { fg = colors.peachRed, bold = true }, -- int, boolean
+  --},
+  --javascript = {
+    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- const, let, function
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this, document, window
+    --["@property"] = { fg = colors.springBlue }, -- Object properties
+    --["@tag"] = { fg = colors.coralBlush }, -- For JSX
+    --["@tag.attribute"] = { fg = colors.springBlue, italic = true }, -- For JSX
+  --},
+  --typescript = {
+    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- const, let, function
+    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this
+    --["@property"] = { fg = colors.springBlue }, -- Object properties
+    --["@type"] = { fg = colors.springLilac, italic = true }, -- type, interface definitions
+    --["@tag"] = { fg = colors.coralBlush }, -- For TSX
+    --["@tag.attribute"] = { fg = colors.springBlue, italic = true }, -- For TSX
+  --},
+}
+-- Link typescriptreact and javascriptreact to their base languages for TSX/JSX
+language_overrides.typescriptreact = language_overrides.typescript
+language_overrides.javascriptreact = language_overrides.javascript
 
--- =============================================================================
--- Search and Match
--- =============================================================================
-hi("Search", { fg = colors.fujiWhite, bg = colors.waveBlue2 })
-hi("IncSearch", { fg = colors.sumiInk1, bg = colors.waveBlue2 })
-hi("MatchParen", { fg = colors.springViolet1, bg = colors.sumiInk2 })
+-- Main Color
+local function apply_colors()
+  if vim.bo.buftype ~= "" or vim.bo.filetype == "" then
+    return
+  end
 
--- =============================================================================
--- Tabs
--- =============================================================================
-hi("TabLineSel", { fg = colors.white, bg = "NONE", bold = true }) -- Active tab
-hi("TabLine", { fg = colors.fujiWhite, bg = "NONE" }) -- Inactive tab
-hi("TabLineFill", { fg = "NONE", bg = "NONE" }) -- Filler space
+  apply_default_highlights()
 
--- =============================================================================
--- LSP Diagnostics
--- =============================================================================
-hi("DiagnosticError", { fg = colors.samuraiRed })
-hi("DiagnosticWarn", { fg = colors.hazardOrange })
-hi("DiagnosticInfo", { fg = colors.mutedTeal })
-hi("DiagnosticHint", { fg = colors.dragonBlue })
-hi("DiagnosticVirtualTextError", { fg = colors.samuraiRed, bg = true })
-hi("DiagnosticVirtualTextWarn", { fg = colors.hazardOrange, bg = true })
-hi("DiagnosticVirtualTextInfo", { fg = colors.mutedTeal, bg = true })
-hi("DiagnosticVirtualTextHint", { fg = colors.dragonBlue, bg = true })
-hi("DiagnosticUnderlineError", { sp = colors.samuraiRed, underline = true })
-hi("DiagnosticUnderlineWarn", { sp = colors.hazardOrange, underline = true })
-hi("DiagnosticUnderlineInfo", { sp = colors.mutedTeal, underline = true })
-hi("DiagnosticUnderlineHint", { sp = colors.dragonBlue, underline = true })
-hi("DiagnosticSignError", { fg = colors.samuraiRed })
-hi("DiagnosticSignWarn", { fg = colors.hazardOrange })
-hi("DiagnosticSignInfo", { fg = colors.mutedTeal })
-hi("DiagnosticSignHint", { fg = colors.dragonBlue })
+  local ft = vim.bo.filetype
 
--- =============================================================================
--- Git Signs
--- =============================================================================
-hi("GitSignsAdd", { fg = colors.gitAdd, bg = true })
-hi("GitSignsChange", { fg = colors.gitChange, bg = true })
-hi("GitSignsDelete", { fg = colors.gitDelete, bg = true })
+  if language_overrides[ft] then
+    for group, settings in pairs(language_overrides[ft]) do
+      hi(group, settings)
+    end
+  end
+end
 
--- =============================================================================
--- Tree-sitter Syntax
--- =============================================================================
--- Core roles
-hi("@variable", { fg = colors.blushVeil })
-hi("@variable.builtin", { fg = colors.blushVeil, bold = true })
-hi("@parameter", { fg = colors.dragonBlue })
-hi("@field", { fg = colors.crystalPink })
-hi("@property", { fg = colors.springBlue })
-hi("@constant", { fg = colors.springLilac, bold = true })
-hi("@constant.builtin", { fg = colors.springLilac, bold = true })
-hi("@function", { fg = colors.coralBlush })
-hi("@function.builtin", { fg = colors.springLilac, bold = true })
-hi("@function.method", { fg = colors.dustyPetal })
-hi("@constructor", { fg = colors.rosewoodMist })
-hi("@type", { fg = colors.deepLilac })
-hi("@type.builtin", { fg = colors.softPurple, bold = true })
-hi("@attribute", { fg = colors.hazardOrange })
-hi("@keyword", { fg = colors.softPurple, bold = true })
-hi("@keyword.import", { fg = colors.softPurple, bold = true })
-hi("@keyword.function", { fg = colors.springLilac })
-hi("@keyword.modifier", { fg = colors.springViolet1 })
-hi("@keyword.class", { fg = colors.rosewoodMist })
-hi("@operator", { fg = colors.waveRed, bold = true })
-hi("@punctuation", { fg = colors.faddedIndigo })
-hi("@string", { fg = colors.seafoamGreen })
-hi("@string.escape", { fg = colors.peachRed })
-hi("@number", { fg = colors.springLilac })
-hi("@boolean", { fg = colors.peachRed, bold = true })
-hi("@comment", { fg = colors.faddedIndigo, italic = true })
-hi("@spell", { fg = colors.faddedIndigo, italic = true })
+-- Autocommand to Trigger Recalculation
+local color_augroup = vim.api.nvim_create_augroup("DynamicColorscheme", { clear = true })
 
--- HTML / XML tags
-hi("@tag", { fg = colors.crystalPink })
-hi("@tag.attribute", { fg = colors.springLilac })
-hi("@tag.builtin", { fg = colors.crystalPink })
-hi("@tag.delimiter", { fg = colors.faddedIndigo })
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = color_augroup,
+  pattern = "*",
+  callback = apply_colors,
+})
 
--- =============================================================================
--- Other Plugins
--- =============================================================================
--- CMP
-hi("FloatBorder", { fg = colors.ivoryMist, bg = true }) -- CMP Border
-hi("CmpCursorLine", { fg = colors.white, bg = "NONE", bold = true }) -- CMP Select
-hi("CmpItemAbbr", { fg = colors.springBlue }) -- Unselected item text
-hi("CmpItemAbbrMatch", { fg = colors.ivoryMist, bold = true }) -- Matching text
-hi("CmpItemMenu", { fg = colors.dimGray }) -- Source label
-hi("CmpItemKindFunction", { fg = colors.dustyPetal }) -- CMP Function
-hi("CmpItemKindMethod", { fg = colors.dustyPetal }) -- CMP Method
-hi("CmpItemKindField", { fg = colors.dustyPetal }) -- CMP Field
-hi("CmpItemKindFile", { fg = colors.dustyPetal }) -- CMP File
-hi("CmpItemKindFolder", { fg = colors.dustyPetal }) -- CMP File
-hi("CmpItemKindKeyword", { fg = colors.dustyPetal }) -- CMP Keyword
-hi("CmpItemKindVariable", { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindValue", { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindColor", { fg = colors.dustyPetal }) -- CMP Variable
-hi("CmpItemKindConstant", { fg = colors.dustyPetal }) -- CMP Constant
-hi("CmpItemKindConstructor", { fg = colors.dustyPetal }) -- CMP Constructor
-hi("CmpItemKindClass", { fg = colors.dustyPetal }) -- CMP Class
-hi("CmpItemKindEnum", { fg = colors.dustyPetal }) -- CMP Enum
-hi("CmpItemKindEnumMember", { fg = colors.dustyPetal }) -- CMP EnumMember
-hi("CmpItemKindText", { fg = colors.dustyPetal }) -- CMP Text
-hi("CmpItemKindSnippet", { fg = colors.dustyPetal }) -- CMP Snippet
-hi("CmpItemKindStruct", { fg = colors.dustyPetal }) -- CMP Struct
-hi("CmpItemKindInterface", { fg = colors.dustyPetal }) -- CMP Interface
-hi("CmpItemKindModule", { fg = colors.dustyPetal }) -- CMP Module
-hi("CmpItemKindProperty", { fg = colors.dustyPetal }) -- CMP Property
-hi("CmpItemKindReference", { fg = colors.dustyPetal }) -- CMP Reference
-
--- Noice
-hi("NoiceCmdline", { fg = colors.white, bg = "NONE" }) -- Main text typed in the command line popup
-hi("NoiceCmdlineIcon", { fg = colors.white, bg = "NONE" }) -- Icon or prompt prefix (e.g., ':')
-hi("NoiceCmdlinePopup", { fg = colors.white, bg = "NONE" }) -- Floating popup window background for command line input
-hi("NoiceCmdlinePopupBorder", { fg = colors.white, bg = "NONE" }) -- Border around the floating command line popup
-hi("NoiceCmdlineHistory", { fg = colors.white, bg = "NONE" }) -- Entries in the command line history popup
-hi("NoiceCmdlineHistorySearch", { fg = colors.white, bg = "NONE" }) -- Highlight for search matches in command line history
-hi("NoicePopupmenu", { fg = colors.white, bg = "NONE" }) -- Completion popup menu text (unselected)
-hi("NoicePopupmenuSel", { fg = colors.white, bg = "NONE" }) -- Selected completion item in popup menu
-hi("NoicePopupmenuKind", { fg = colors.white, bg = "NONE" }) -- Kind icon or label in popup menu
-hi("NoicePopupmenuKindDefault", { fg = colors.white, bg = "NONE" }) -- Default kind icon in popup menu
-hi("NoicePopupmenuKindKeyword", { fg = colors.white, bg = "NONE" }) -- Keyword kind icon in popup menu
-hi("NoicePopupmenuKindVariable", { fg = colors.white, bg = "NONE" }) -- Variable kind icon in popup menu
-hi("NoicePopupmenuKindConstant", { fg = colors.white, bg = "NONE" }) -- Constant kind icon in popup menu
-hi("NoicePopupmenuKindFunction", { fg = colors.white, bg = "NONE" }) -- Function kind icon in popup menu
-hi("NoicePopupmenuKindMethod", { fg = colors.white, bg = "NONE" }) -- Method kind icon in popup menu
-hi("NoicePopupmenuKindInterface", { fg = colors.white, bg = "NONE" }) -- Interface kind icon in popup menu
-hi("NoicePopupmenuKindText", { fg = colors.white, bg = "NONE" }) -- Text kind icon in popup menu
-hi("NoicePopupmenuKindSnippet", { fg = colors.white, bg = "NONE" }) -- Snippet kind icon in popup menu
-hi("NoicePopupmenuKindColor", { fg = colors.white, bg = "NONE" }) -- Color kind icon in popup menu
-hi("NoicePopupmenuKindFile", { fg = colors.white, bg = "NONE" }) -- File kind icon in popup menu
-hi("NoicePopupmenuKindFolder", { fg = colors.white, bg = "NONE" }) -- Folder kind icon in popup menu
-hi("NoicePopupmenuKindEnum", { fg = colors.white, bg = "NONE" }) -- Enum kind icon in popup menu
-hi("NoicePopupmenuKindEnumMember", { fg = colors.white, bg = "NONE" }) -- Enum member kind icon in popup menu
-hi("NoicePopupmenuKindStruct", { fg = colors.white, bg = "NONE" }) -- Struct kind icon in popup menu
-hi("NoiceNotify", { fg = colors.white, bg = "NONE" }) -- Notification background and text
-hi("NoiceNotifyBorder", { fg = colors.white, bg = "NONE" }) -- Border around notifications
-hi("NoiceNotifyError", { fg = colors.white, bg = "NONE" }) -- Error notification highlight
-hi("NoiceNotifyWarn", { fg = colors.white, bg = "NONE" }) -- Warning notification highlight
-hi("NoiceNotifyInfo", { fg = colors.white, bg = "NONE" }) -- Info notification highlight
-hi("NoiceNotifyDebug", { fg = colors.white, bg = "NONE" }) -- Debug notification highlight
-hi("NoiceNotifyTrace", { fg = colors.white, bg = "NONE" }) -- Trace notification highlight
-hi("NoiceLspProgressClient", { fg = colors.white, bg = "NONE" }) -- LSP progress client name
-hi("NoiceLspProgressSpinner", { fg = colors.white, bg = "NONE" }) -- Spinner during LSP progress
-hi("NoiceLspProgressTitle", { fg = colors.white, bg = "NONE" }) -- Title text in LSP progress
-hi("NoiceLspProgressPercentage", { fg = colors.white, bg = "NONE" }) -- Percentage text in LSP progress
-hi("NoiceLspProgressMessage", { fg = colors.white, bg = "NONE" }) -- Message text in LSP progress
-hi("NoiceLspProgressExtra", { fg = colors.white, bg = "NONE" }) -- Extra info text in LSP progress
-hi("NoiceFormatTitle", { fg = colors.white, bg = "NONE" }) -- Titles for formatted messages
-hi("NoiceFormatContent", { fg = colors.white, bg = "NONE" }) -- Content for formatted messages
-hi("NoiceFormatReason", { fg = colors.white, bg = "NONE" }) -- Reason for formatted messages
-hi("NoiceFormatField", { fg = colors.white, bg = "NONE" }) -- Field names in formatted messages
-
--- LuaLine
-hi("StatusLine", { fg = colors.ivoryMist, bg = "NONE" }) -- Main Lualine
-hi("StatusLineNC", { fg = colors.ivoryMist, bg = "NONE" }) -- Second Lualine
-
--- Telescope
-hi("TelescopeSelection", { fg = colors.ivoryMist, bg = "NONE", bold = true }) -- Telescope Select
-hi("TelescopeMatching", { fg = colors.dragonBlue, bg = "NONE", bold = true }) -- Telescope Select
-hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" }) -- Telescope Unselected Options
-
-vim.g.colors_name = "cottoncandy" -- Colorscheme Name
-
+apply_colors()
+vim.g.colors_name = "cottoncandy"

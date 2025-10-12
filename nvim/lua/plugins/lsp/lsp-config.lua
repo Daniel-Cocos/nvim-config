@@ -24,7 +24,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "clangd", "cssls", "gopls", "html", "jdtls",
+          "clangd", "cssls", "gopls", "html",
           "jsonls", "lua_ls", "marksman", "pyright",
           "rust_analyzer", "sqls", "tsserver", "yamlls",
         },
@@ -43,7 +43,7 @@ return {
       end
 
       local servers = {
-        "clangd", "cssls", "html", "jdtls", "jsonls",
+        "clangd", "cssls", "html", "jsonls",
         "marksman", "pyright", "rust_analyzer", "sqls",
         "tsserver",
         "yamlls",
