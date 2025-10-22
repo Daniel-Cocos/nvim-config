@@ -56,6 +56,7 @@ extend(import("appearance.lualine"))
 extend(import("appearance.noice"))
 extend(import("appearance.render-markdown"))
 extend(import("appearance.highlight-colors"))
+extend(import("appearance.image"))
 
 -- Other
 extend(import("other.autopairs"))

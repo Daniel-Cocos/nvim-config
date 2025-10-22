@@ -1,18 +1,23 @@
 local vim = vim
 local signs = {
-  Error = "󰅚",
-  Warn = "󰀪",
-  Info = "󰋽",
-  Hint = "󰌶",
+	Error = "󰅚",
+	Warn = "󰀪",
+	Info = "󰋽",
+	Hint = "󰌶",
 }
 
 -- Basic settings
-vim.opt.number = false        -- Line numbers
+vim.opt.number = false -- Line numbers
 vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.cursorline = false    -- Highlight current line
-vim.opt.wrap = false          -- Don't wrap lines
-vim.opt.scrolloff = 0         -- Keep min 0 lines above/below cursor when scrolling
-vim.opt.sidescrolloff = 0     -- Keep min 0 columns left/right of cursor when scrolling
+vim.opt.cursorline = false -- Highlight current line
+vim.opt.wrap = false -- Don't wrap lines
+vim.opt.scrolloff = 0 -- Keep min 0 lines above/below cursor when scrolling
+vim.opt.sidescrolloff = 0 -- Keep min 0 columns left/right of cursor when scrolling
+
+-- Spelling
+vim.o.spell = true
+vim.o.spelllang = "en"
+vim.o.spellfile = vim.fn.expand("~/.config/nvim/spell/en.utf-8.add")
 
 -- Cursorline
 vim.opt.cursorline = true
@@ -54,19 +59,19 @@ vim.o.tabline = "%!v:lua.my_tabline()"
 
 -- Diagnostic Appearance
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = "■", -- "●", "■", "▶"
-    spacing = 4,
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = signs.Error,
-      [vim.diagnostic.severity.WARN] = signs.Warn,
-      [vim.diagnostic.severity.INFO] = signs.Info,
-      [vim.diagnostic.severity.HINT] = signs.Hint,
-    },
-  },
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
+	virtual_text = {
+		prefix = "■", -- "●", "■", "▶"
+		spacing = 4,
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = signs.Error,
+			[vim.diagnostic.severity.WARN] = signs.Warn,
+			[vim.diagnostic.severity.INFO] = signs.Info,
+			[vim.diagnostic.severity.HINT] = signs.Hint,
+		},
+	},
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
 })
