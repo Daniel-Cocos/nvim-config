@@ -1,6 +1,6 @@
 return {
 	{
-		"SAGhen/blink.cmp",
+		"saghen/blink.cmp",
 		dependencies = {
 			"onsails/lspkind.nvim",
 			"L3MON4D3/LuaSnip",
@@ -13,6 +13,11 @@ return {
 			end
 
 			blink.setup({
+				fuzzy = {
+					prebuilt_binaries = {
+						download = false,
+					},
+				},
 				snippets = { preset = "luasnip" },
 				sources = {
 					default = { "lsp", "path", "buffer", "snippets" },
@@ -20,9 +25,9 @@ return {
 				keymap = {
 					preset = "default",
 					["<C-l>"] = { "accept", "fallback" },
-					["<C-y>"] = { "fallback" }, -- disable accept on <C-y>
-					["<C-j>"] = { "select_next", "fallback" }, -- navigate down
-					["<C-k>"] = { "select_prev", "fallback" }, -- navigate up
+					["<C-y>"] = { "fallback" },
+					["<C-j>"] = { "select_next", "fallback" },
+					["<C-k>"] = { "select_prev", "fallback" },
 				},
 			})
 

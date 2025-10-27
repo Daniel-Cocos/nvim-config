@@ -20,3 +20,4 @@ autocmd("VimEnter", {
 		end, 10) -- 10ms delay
 	end,
 })
+

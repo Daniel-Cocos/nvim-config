@@ -63,3 +63,4 @@ extend(import("other.autopairs"))
 extend(import("other.dadbod"))
 
 require("lazy").setup(plugins)
+

@@ -166,7 +166,7 @@ local function apply_default_highlights()
   --hi("@keyword.import", { fg = colors.peachRed, bold = true })
   --hi("@keyword.return", { fg = colors.peachRed, bold = true })
   -- hi("@keyword.function", { fg = colors.weepLilac, bold = true })
-  --hi("@keyword.modifier", { fg = colors.springViolet1 })
+  hi("@keyword.modifier", { fg = colors.samuraiRed })
   --hi("@keyword.class", { fg = colors.rosewoodMist })
   hi("@operator", { fg = colors.salmonOrange, bold = true })
   hi("@punctuation", { fg = colors.silverGray })
@@ -345,3 +345,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 apply_colors()
 vim.g.colors_name = "cottoncandy"
+

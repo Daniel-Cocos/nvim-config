@@ -70,11 +70,6 @@ function M.setup()
 			formatters_by_ft = cfg.formatters,
 			notify_on_error = false,
 		})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function(args)
-				require("conform").format({ bufnr = args.buf, lsp_fallback = true, quiet = true })
-			end,
-		})
 	end
 
 	local ok_lint, lint = pcall(require, "lint")
@@ -89,3 +84,4 @@ function M.setup()
 end
 
 return M
+
