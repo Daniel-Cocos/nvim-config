@@ -60,7 +60,7 @@ extend(import("appearance.image"))
 
 -- Other
 extend(import("other.autopairs"))
-extend(import("other.dadbod"))
+extend(import("other.autotag"))
 
 require("lazy").setup(plugins)
 
