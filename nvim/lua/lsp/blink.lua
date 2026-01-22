@@ -14,7 +14,6 @@ return {
 
       blink.setup({
         fuzzy = {
-          -- ADD THIS LINE: Force Lua implementation to fix the error
           implementation = "lua",
           prebuilt_binaries = {
             download = false,

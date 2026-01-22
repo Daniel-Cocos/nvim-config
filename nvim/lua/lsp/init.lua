@@ -31,7 +31,6 @@ function M.setup()
       end,
     },
 
-    -- --- LUA ---
     lua_ls = {
       settings = {
         Lua = {
@@ -41,18 +40,11 @@ function M.setup()
         },
       },
     },
-
-    -- --- C / C++ ---
     clangd = {},
-
-    -- --- WEB (JS/TS/HTML/CSS) ---
-    ts_ls = {}, -- For TypeScript/JavaScript
+    ts_ls = {},
     html = {},
     cssls = {},
     jsonls = {},
-
-    -- --- JAVA ---
-    -- Note: Java is complex. If this simple setup fails, you might need 'nvim-jdtls' plugin.
     jdtls = {},
   }
 
