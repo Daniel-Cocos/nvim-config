@@ -1,87 +1,69 @@
 local M = {}
 
-local function merge_lang_configs(langs)
-	local all = { servers = {}, formatters = {}, linters = {} }
-	for _, m in ipairs(langs) do
-		local ok, cfg = pcall(require, m)
-		if ok and type(cfg) == "table" then
-			vim.list_extend(all.servers, cfg.servers or {})
-			for ft, v in pairs(cfg.formatters or {}) do
-				all.formatters[ft] = v
-			end
-			for ft, v in pairs(cfg.linters or {}) do
-				all.linters[ft] = v
-			end
-		end
-	end
-	return all
-end
-
 function M.setup()
-	local langs = {
-		"langs.css",
-		"langs.python",
-		"langs.c",
-		"langs.html",
-		"langs.java",
-		"langs.nix",
-		"langs.lua",
-		"langs.javascript",
-		"langs.markdown",
-		"langs.sql",
-	}
+  local lspconfig = require("lspconfig")
+  local blink = require("blink.cmp")
 
-	local cfg = merge_lang_configs(langs)
+  local capabilities = blink.get_lsp_capabilities()
 
-	local lspconfig = require("lspconfig")
+  local servers = {
+    pyright = {
+      settings = {
+        pyright = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace",
+          },
+        },
+      },
+      on_init = function(client)
+        -- This finds the 'python' executable in the current $PATH (Nix shell/Poetry)
+        -- and tells the LSP to use it for imports.
+        local python_path = vim.fn.exepath("python")
+        if client.config.settings then
+          client.config.settings.python = { pythonPath = python_path }
+        else
+          client.config.settings = { python = { pythonPath = python_path } }
+        end
+        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+        return true
+      end,
+    },
 
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	local ok_blink, blink = pcall(require, "blink.cmp")
-	if ok_blink and type(blink.get_lsp_capabilities) == "function" then
-		capabilities = blink.get_lsp_capabilities(capabilities)
-	else
-		capabilities.textDocument.completion = capabilities.textDocument.completion or {}
-		local ci = capabilities.textDocument.completion.completionItem or {}
-		ci.snippetSupport = true
-		capabilities.textDocument.completion.completionItem = ci
-	end
+    -- --- LUA ---
+    lua_ls = {
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+          workspace = { checkThirdParty = false },
+          telemetry = { enable = false },
+        },
+      },
+    },
 
-	local function setup_server(name, opts)
-		local srv = name
-		if not lspconfig[name] and name == "ts_ls" and lspconfig.tsserver then
-			srv = "tsserver"
-		end
-		if lspconfig[srv] then
-			lspconfig[srv].setup(opts)
-		else
-			vim.notify("Unknown LSP server: " .. tostring(name), vim.log.levels.WARN)
-		end
-	end
+    -- --- C / C++ ---
+    clangd = {},
 
-	for _, srv in ipairs(cfg.servers) do
-		local name, opts = srv.name, srv.opts or {}
-		opts.capabilities = vim.tbl_deep_extend("force", {}, opts.capabilities or {}, capabilities)
-		setup_server(name, opts)
-	end
+    -- --- WEB (JS/TS/HTML/CSS) ---
+    ts_ls = {}, -- For TypeScript/JavaScript
+    html = {},
+    cssls = {},
+    jsonls = {},
 
-	local ok_conform, conform = pcall(require, "conform")
-	if ok_conform then
-		conform.setup({
-			formatters_by_ft = cfg.formatters,
-			notify_on_error = false,
-		})
-	end
+    -- --- JAVA ---
+    -- Note: Java is complex. If this simple setup fails, you might need 'nvim-jdtls' plugin.
+    jdtls = {},
+  }
 
-	local ok_lint, lint = pcall(require, "lint")
-	if ok_lint then
-		lint.linters_by_ft = cfg.linters
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-			callback = function()
-				require("lint").try_lint()
-			end,
-		})
-	end
+  -- Loop through the servers and set them up
+  for name, config in pairs(servers) do
+    -- Merge the blink capabilities into the server config
+    config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
+
+    -- actually setup the server
+    lspconfig[name].setup(config)
+  end
 end
 
 return M
-
