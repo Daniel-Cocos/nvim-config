@@ -11,6 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Clear the module cache for 'lazy' so we load lazy.nvim, not this file
+package.loaded["lazy"] = nil
+
+-- Force load lazy.nvim from the correct path
+local lazy = dofile(lazypath .. "/lua/lazy/init.lua")
+
 -- helper func return module spec thing
 local islist = vim.islist or vim.tbl_islist
 local function import(mod)
@@ -35,14 +41,13 @@ local function extend(list)
 	end
 end
 
--- lsp config
-extend({
-	{ "neovim/nvim-lspconfig" },
-	{ "stevearc/conform.nvim" },
-	{ "mfussenegger/nvim-lint" },
-})
-
+-- LSP config
+extend(import("lsp.lspconfig"))
 extend(import("lsp.blink"))
+extend(import("lsp.conform"))
+extend({
+  { "mfussenegger/nvim-lint" },
+})
 
 -- Navigation
 extend(import("navigation.telescope"))
@@ -62,5 +67,4 @@ extend(import("appearance.image"))
 extend(import("other.autopairs"))
 extend(import("other.autotag"))
 
-require("lazy").setup(plugins)
-
+lazy.setup(plugins)

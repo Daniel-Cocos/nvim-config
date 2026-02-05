@@ -1,4 +1,3 @@
-local vim = vim
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " " -- Set space as <leader>
@@ -83,7 +82,9 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- code action
 vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", opts) -- toggle Neotree
 
 -- NoneLs --
-vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {}) -- format code
+vim.keymap.set("n", "<leader>gf", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format code" })
 
 -- Telescope --
 vim.keymap.set("n", "<leader>cs", ":Telescope colorscheme<CR>", opts) -- open color scheme menu
@@ -141,4 +142,3 @@ vim.keymap.set("n", "<leader>fa", function()
 		vim.cmd("edit " .. vim.fn.fnameescape(input))
 	end)
 end, { desc = "New tab + prompt for file path and open it" })
----- Combos ----
