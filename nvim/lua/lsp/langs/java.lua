@@ -1,8 +1,11 @@
-return {
-  servers = {
-    { name = "jdtls" },
-  },
-  formatters = {
-    java = { "google-java-format" },
-  },
-}
+local M = {}
+
+function M.setup(capabilities)
+  local lspconfig = require("lspconfig")
+
+  lspconfig.jdtls.setup({
+    capabilities = capabilities,
+  })
+end
+
+return M

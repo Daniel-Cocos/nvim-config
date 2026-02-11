@@ -25,5 +25,12 @@ return {
     require("lsp.langs.python").setup(capabilities)
     require("lsp.langs.lua").setup(capabilities)
     require("lsp.langs.typescript").setup(capabilities)
+    require("lsp.langs.nix").setup(capabilities)
+    require("lsp.langs.html").setup(capabilities)
+    require("lsp.langs.json").setup(capabilities)
+    require("lsp.langs.java").setup(capabilities)
+    require("lsp.langs.css").setup(capabilities)
+    require("lsp.langs.sql").setup(capabilities)
+    require("lsp.langs.c").setup(capabilities)
   end,
 }

@@ -1,7 +1,11 @@
-return {
-  servers = {"jsonls"},
-  formatters = {
-    json = { "prettier" },
-  },
-  linters = {},
-}
+local M = {}
+
+function M.setup(capabilities)
+  local lspconfig = require("lspconfig")
+
+  lspconfig.jsonls.setup({
+    capabilities = capabilities,
+  })
+end
+
+return M

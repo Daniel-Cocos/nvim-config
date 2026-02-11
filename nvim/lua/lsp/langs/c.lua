@@ -1,10 +1,11 @@
-return {
-	servers = {
-		{ name = "clangd" },
-	},
-	formatters = {
-		c = { "clang-format" },
-		cpp = { "clang-format" },
-	},
-	linters = {},
-}
+local M = {}
+
+function M.setup(capabilities)
+  local lspconfig = require("lspconfig")
+
+  lspconfig.clangd.setup({
+    capabilities = capabilities,
+  })
+end
+
+return M

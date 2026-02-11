@@ -7,10 +7,16 @@ return {
 	opts = {
 		keymap = {
 			preset = "none",
-			["<C-l>"] = { "accept", "fallback" },
 			["<C-y>"] = { "fallback" },
+
+			["<C-l>"] = { "accept", "fallback" },
+      ["<Right>"] = { "accept", "fallback" },
+
 			["<C-j>"] = { "select_next", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
+
 			["<C-k>"] = { "select_prev", "fallback" },
+      ["<Up>"] = { "select_prev", "fallback" },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,

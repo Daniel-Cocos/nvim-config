@@ -1,11 +1,11 @@
-return {
-  servers = {
-    { name = "nixd" },
-  },
-  formatters = {
-    nix = { "alejandra" },
-  },
-  linters = {
-    nix = { "statix" },
-  },
-}
+local M = {}
+
+function M.setup(capabilities)
+  local lspconfig = require("lspconfig")
+
+  lspconfig.nixd.setup({
+    capabilities = capabilities,
+  })
+end
+
+return M
