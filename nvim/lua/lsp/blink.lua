@@ -10,13 +10,13 @@ return {
 			["<C-y>"] = { "fallback" },
 
 			["<C-l>"] = { "accept", "fallback" },
-      ["<Right>"] = { "accept", "fallback" },
+			["<Right>"] = { "accept", "fallback" },
 
 			["<C-j>"] = { "select_next", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
+			["<Down>"] = { "select_next", "fallback" },
 
 			["<C-k>"] = { "select_prev", "fallback" },
-      ["<Up>"] = { "select_prev", "fallback" },
+			["<Up>"] = { "select_prev", "fallback" },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
@@ -27,6 +27,8 @@ return {
 				auto_brackets = { enabled = true },
 			},
 			menu = {
+				border = "rounded",
+        scrollbar = false,
 				draw = {
 					columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
 				},
@@ -34,6 +36,9 @@ return {
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 200,
+				window = {
+					border = "rounded",
+				},
 			},
 		},
 		sources = {

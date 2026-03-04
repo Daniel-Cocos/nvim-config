@@ -107,6 +107,12 @@ local function apply_default_highlights()
   hi("CmdlineCmd", { fg = colors.white })
   hi("CmdlineKey", { fg = colors.white })
 
+  -- Popup Menu (right-click menu)
+  hi("PopupMenu", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("PopupMenuSel", { fg = colors.white, bg = "NONE", bold = true })
+  hi("PopupMenuSbar", { bg = "NONE" })
+  hi("PopupMenuThumb", { bg = "NONE" })
+
   -- Popup and Completion Menu
   hi("Pmenu", { fg = colors.fujiWhite, bg = "NONE" })
   hi("PmenuSel", { fg = colors.white, bg = "NONE", bold = true })
@@ -215,6 +221,32 @@ local function apply_default_highlights()
   hi("CmpItemKindProperty", { fg = colors.springBlue })
   hi("CmpItemKindReference", { fg = colors.fujiWhite })
 
+  -- Noice
+  hi("NoiceCmdline", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("NoiceCmdlinePopup", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("NoiceCmdlinePopupBorder", { fg = colors.white, bg = "NONE" })
+  hi("NoiceCmdlinePopupTitle", { fg = colors.white, bg = "NONE" })
+  hi("NoiceCmdlineIcon", { fg = colors.white, bg = "NONE" })
+  hi("NoicePopup", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("NoicePopupBorder", { fg = colors.white, bg = "NONE" })
+  hi("NoicePopupmenu", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("NoicePopupmenuBorder", { fg = colors.white, bg = "NONE" })
+  hi("NoiceConfirm", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("NoiceConfirmBorder", { fg = colors.white, bg = "NONE" })
+  hi("NoiceCmdlineIconSearch", { fg = colors.white, bg = "NONE" })
+
+  -- Blink.cmp (add after your existing Cmp highlights)
+  hi("BlinkCmpMenu", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("BlinkCmpMenuBorder", { fg = colors.white, bg = "NONE" })
+  hi("BlinkCmpMenuSelection", { fg = colors.white, bg = "NONE", bold = true })
+  hi("BlinkCmpDoc", { fg = colors.fujiWhite, bg = "NONE" })
+  hi("BlinkCmpDocBorder", { fg = colors.white, bg = "NONE" })
+  hi("BlinkCmpDocSeparator", { fg = colors.white, bg = "NONE" })
+  hi("BlinkCmpLabel", { fg = colors.springBlue })
+  hi("BlinkCmpLabelMatch", { fg = colors.ivoryMist, bold = true })
+  hi("BlinkCmpLabelDescription", { fg = colors.silverGray })
+  hi("BlinkCmpKind", { fg = colors.dustyPetal })
+
   hi("StatusLine", { fg = colors.ivoryMist, bg = "NONE" })
   hi("StatusLineNC", { fg = colors.silverGray, bg = "NONE" })
 
@@ -319,17 +351,16 @@ language_overrides.javascriptreact = language_overrides.javascript
 
 -- Main Color
 local function apply_colors()
-  if vim.bo.buftype ~= "" or vim.bo.filetype == "" then
-    return
-  end
-
+  -- Always apply default highlights first
   apply_default_highlights()
 
-  local ft = vim.bo.filetype
-
-  if language_overrides[ft] then
-    for group, settings in pairs(language_overrides[ft]) do
-      hi(group, settings)
+  -- Only apply language overrides if we have a valid buffer with a filetype
+  if vim.bo.buftype == "" and vim.bo.filetype ~= "" then
+    local ft = vim.bo.filetype
+    if language_overrides[ft] then
+      for group, settings in pairs(language_overrides[ft]) do
+        hi(group, settings)
+      end
     end
   end
 end

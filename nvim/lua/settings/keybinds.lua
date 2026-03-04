@@ -5,17 +5,38 @@ vim.g.mapleader = " " -- Set space as <leader>
 ---- Remove Binds ----
 
 ---- Aliases ----
-
 -- Text Manipulation --
 vim.keymap.set("i", "<C-BS>", "<C-W>", opts) -- deletes the word before the cursor in insert mode
 vim.keymap.set("n", "<C-BS>", "db", opts) -- deletes the word before the cursor in normal mode
 vim.keymap.set("v", "p", '"_dP', opts) -- keep paste buffer even when replacing highlighted text
+vim.keymap.set("n", "<leader>d", '"_d', opts) -- delete without yanking
+vim.keymap.set("v", "<leader>d", '"_d', opts) -- delete without yanking (visual)
+
+-- Quick Surround (without plugin) --
+vim.keymap.set("v", "<leader>(", "<Esc>`>a)<Esc>`<i(<Esc>", opts) -- surround with ()
+vim.keymap.set("v", "<leader>[", "<Esc>`>a]<Esc>`<i[<Esc>", opts) -- surround with []
+vim.keymap.set("v", "<leader>{", "<Esc>`>a}<Esc>`<i{<Esc>", opts) -- surround with {}
+vim.keymap.set("v", '<leader>"', '<Esc>`>a"<Esc>`<i"<Esc>', opts) -- surround with ""
+vim.keymap.set("v", "<leader>'", "<Esc>`>a'<Esc>`<i'<Esc>", opts) -- surround with ''
+vim.keymap.set("v", "<leader>`", "<Esc>`>a`<Esc>`<i`<Esc>", opts) -- surround with ``
+
+-- Indentation --
+vim.keymap.set("n", "<Tab>", ">>", opts) -- indent line right
+vim.keymap.set("n", "<S-Tab>", "<<", opts) -- indent line left
+vim.keymap.set("v", "<Tab>", ">gv", opts) -- indent selection right
+vim.keymap.set("v", "<S-Tab>", "<gv", opts) -- indent selection left
 
 -- Saving/Quitting --
 vim.keymap.set("n", "<leader>qa", ":qa!<CR>") -- quit all without saving
 vim.keymap.set("n", "<leader>qq", ":q!<CR>") -- quit without saving
 vim.keymap.set("n", "<leader>wa", ":wa<CR>") -- write all
 vim.keymap.set("n", "<leader>wq", ":wqa<CR>") -- write&quit all
+
+-- Quick Search/Replace --
+vim.keymap.set("n", "<leader>s", ":%s//g<Left><Left>", { noremap = true }) -- search and replace
+vim.keymap.set("v", "<leader>s", ":s//g<Left><Left>", { noremap = true }) -- search and replace in selection
+vim.keymap.set("n", "<leader>S", ":%s/<C-r><C-w>//g<Left><Left>", { noremap = true }) -- replace word under cursor
+vim.keymap.set("n", "<Esc>", ":noh<CR>", opts) -- clear search highlight
 
 -- Tab Management --
 vim.keymap.set("n", "<A-n>", ":tabnew<CR>") -- open a new tab
@@ -40,9 +61,44 @@ vim.keymap.set("n", "<C-Left>", ":wincmd h<CR>") -- navigate left a window
 vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>") -- navigate right a window
 
 ---- Diagnostic ----
+-- Navigate Diagnostic Messages --
+
+vim.keymap.set("n", "<leader>gej", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to next error" })
+
+vim.keymap.set("n", "<leader>gwj", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
+end, { desc = "Go to next warning" })
+
+vim.keymap.set("n", "<leader>gij", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.INFO })
+end, { desc = "Go to next info" })
+
+vim.keymap.set("n", "<leader>ghj", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.HINT })
+end, { desc = "Go to next info" })
+
+-- Navigate to previous diagnostic by severity --
+vim.keymap.set("n", "<leader>gek", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to previous error" })
+
+vim.keymap.set("n", "<leader>gwk", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN })
+end, { desc = "Go to previous warning" })
+
+vim.keymap.set("n", "<leader>gik", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.INFO })
+end, { desc = "Go to previous info" })
+
+vim.keymap.set("n", "<leader>ghk", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.HINT })
+end, { desc = "Go to next info" })
+
 -- Pop-up containing all diagnostic messages from current line --
 vim.keymap.set("n", "<leader>p", function()
-	vim.diagnostic.open_float(0, {
+	vim.diagnostic.open_float({
 		scope = "line",
 		focusable = true,
 		border = "rounded",
@@ -74,7 +130,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_signs<CR>", {})
 
 -- LspConfig --
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- show hover information
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- show hover information 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {}) -- go to definition
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- code action
 
