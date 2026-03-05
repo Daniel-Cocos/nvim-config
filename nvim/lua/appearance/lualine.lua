@@ -150,7 +150,7 @@ return {
             function()
               return vim.bo.modified and '[+]' or ''
             end,
-            color = { fg = colors.hazardOrange, bg = 'NONE', gui = 'bold' },
+            color = { fg = colors.ivoryMist, bg = 'NONE', gui = 'bold' },
             cond = function() return vim.bo.modified end,
             padding = { left = 1, right = 0 },
           },
