@@ -15,16 +15,8 @@ end
 -- Palette
 -- =============================================================================
 local colors = {
-  pink1 = "#de4d86",
-  cyan1 = "#70e4ef",
-  cyan2 = "#84e6f8",
-  blue1 = "#00509d",
   pink2 = "#ff36ab",
   pink3 = "#ff6Bab",
-  yellow1 = "#f5bd1f",
-  purple1 = "#820263",
-  orange1 = "#fb8b24",
-  orange2 = "#ff8000",
   coralBlush = "#D98982",
   black = "#000000",
   blushVeil = "#EC9EAD",
@@ -35,7 +27,6 @@ local colors = {
   silverGray = "#808080",
   sumiInk1 = "#1F1F28",
   sumiInk2 = "#2A2A37",
-  waveBlue1 = "#543212",
   waveBlue2 = "#2D4F67",
   samuraiRed = "#E82424",
   dragonBlue = "#658594",
@@ -251,7 +242,7 @@ local function apply_default_highlights()
   hi("StatusLineNC", { fg = colors.silverGray, bg = "NONE" })
 
   hi("TelescopeSelection", { bg = "NONE", bold = true })
-  hi("TelescopeMatching", { fg = colors.hazardOrange, bold = true })
+  hi("TelescopeMatching", { fg = colors.pink2, bold = true })
   hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" })
   hi("TelescopeBorder", { fg = colors.white, bg = "NONE" })
 
