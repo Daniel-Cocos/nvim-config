@@ -1,12 +1,13 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' }, -- ◢◤ ◥◣ │
   config = function()
     local colors = {
       ivoryMist    = "#F8F8F0",
       samuraiRed   = "#E82424",
       hazardOrange = "#FF9E3B",
       mutedTeal    = "#3BA7A4",
+      seafoamGreen = "#6EA88F",
     }
 
     local function diag_count(severity)
@@ -133,6 +134,20 @@ return {
             padding = { left = 1, right = 0 },
           },
 
+          -- pipe symbol at the end of diagnostics
+          {
+            function()
+              return '│'
+            end,
+            cond = function()
+              return diag_count(vim.diagnostic.severity.ERROR) > 0
+                or diag_count(vim.diagnostic.severity.WARN) > 0
+                or diag_count(vim.diagnostic.severity.INFO) > 0
+            end,
+            color = { fg = colors.ivoryMist, bg = 'NONE' },
+            padding = { left = 1, right = 0 },
+          },
+
           -- filename element
           {
             'filename',
@@ -140,12 +155,15 @@ return {
             path = 1,
             color = { fg = colors.ivoryMist, bg = 'NONE' },
             fmt = function(str)
-              return str ~= '' and str or '[No Name]'
+              if vim.bo.filetype == 'TelescopePrompt' then
+                return 'Searching'
+              end
+              return str ~= '' and ('󰉋 ' .. str) or '[No Name]'
             end,
             padding = { left = 1, right = 0 },
           },
 
-          -- if file is modified show plus sign [+]
+          -- modifications
           {
             function()
               return vim.bo.modified and '[+]' or ''
@@ -205,8 +223,3 @@ return {
     }
   end,
 }
-
-
-
-
-
