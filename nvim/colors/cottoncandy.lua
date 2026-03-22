@@ -48,10 +48,11 @@ local colors = {
   peachRed = "#E13C6B",
   mintGreen = "#6EBB82",
   waveRed = "#DD5555",
-  springBlue = "#549CB4",
+  springBlue = "#549CB4", -- #4885ff 
   sageGreen = "#87A96B",
   springLilac = "#9E9BC6",
   goldenYellow = "#E5B567",
+  goldenYellow1 = "#FFC857",
   deepIndigo = "#6B5B95",
   salmonOrange = "#EC8B5E",
   warmGray = "#9B8B7E",
@@ -67,7 +68,7 @@ local colors = {
 -- Highlight Function
 -- =============================================================================
 local function hi(group, opts)
-  if opts.bg == true then
+  if opts.bg == true or opts.bg == "None" then
     opts.bg = "NONE"
   end
   vim.api.nvim_set_hl(0, group, opts)
@@ -82,7 +83,7 @@ local function apply_default_highlights()
   hi("DiffAdd", { bg = "NONE" })
   hi("DiffChange", { bg = "NONE" })
   hi("DiffDelete", { bg = "NONE" })
-  hi("ColorColumn", { bg = colors.sumiInk2 })
+  hi("ColorColumn", { bg = "NONE" })
   hi("CursorColumn", { bg = "NONE" })
   hi("CursorLine", { bg = "NONE" })
   hi("CursorLineNr", { fg = colors.white, bg = "None", bold = true })
@@ -91,7 +92,7 @@ local function apply_default_highlights()
   hi("NormalFloat", { fg = colors.faddedIndigo, bg = "NONE" })
   hi("SignColumn", { bg = true })
   hi("VertSplit", { fg = colors.sumiInk2, bg = true })
-  hi("Visual", { bg = colors.charcoalMist })
+  hi("Visual", { bg = "NONE" })
 
   -- Command Line
   hi("CmdlinePrompt", { fg = colors.white })
@@ -111,9 +112,9 @@ local function apply_default_highlights()
   hi("PmenuThumb", { bg = "NONE" })
 
   -- Search and Match
-  hi("Search", { fg = colors.fujiWhite, bg = colors.waveBlue2 })
-  hi("IncSearch", { fg = colors.sumiInk1, bg = colors.waveBlue2 })
-  hi("MatchParen", { fg = colors.springViolet1, bg = colors.sumiInk2, bold = true })
+  hi("Search", { bg = "NONE", bold = true, underline = true })
+  hi("IncSearch", { fg = colors.goldenYellow, bg = "NONE", bold = true })
+  hi("MatchParen", { fg = colors.goldenYellow, bg = "NONE", bold = true })
 
   -- Tabs
   hi("TabLineSel", { fg = colors.white, bg = "NONE", bold = true })
@@ -313,6 +314,9 @@ local language_overrides = {
     ["@markup.italic"] = { fg = colors.white, italic = true }, -- Italic
     ["@markup.link.url"] = { fg = colors.springBlue, underline = true },
   },
+  devdocs = {
+    ["@spell"] = { fg = colors.white },
+  },
   --java = {
     --["@keyword.modifier"] = { fg = colors.samuraiRed }, -- public, static, final
     --["@type"] = { fg = colors.rosewoodMist, bold = true }, -- Class names
@@ -346,7 +350,7 @@ local function apply_colors()
   apply_default_highlights()
 
   -- Only apply language overrides if we have a valid buffer with a filetype
-  if vim.bo.buftype == "" and vim.bo.filetype ~= "" then
+  if vim.bo.filetype ~= "" then
     local ft = vim.bo.filetype
     if language_overrides[ft] then
       for group, settings in pairs(language_overrides[ft]) do
@@ -364,6 +368,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
   callback = apply_colors,
 })
+
+for _, group in ipairs(vim.fn.getcompletion("", "highlight")) do
+  local hl = vim.api.nvim_get_hl(0, { name = group })
+  if hl.bg then
+    vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+  end
+end
 
 apply_colors()
 vim.g.colors_name = "cottoncandy"

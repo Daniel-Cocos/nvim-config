@@ -66,5 +66,6 @@ extend(import("appearance.image"))
 -- Other
 extend(import("other.autopairs"))
 extend(import("other.autotag"))
+extend(import("other.devdocs"))
 
 lazy.setup(plugins)

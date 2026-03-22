@@ -1,0 +1,73 @@
+return {
+  "luckasRanarison/nvim-devdocs",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  cmd = {
+    "DevdocsFetch",
+    "DevdocsInstall",
+    "DevdocsUninstall",
+    "DevdocsOpen",
+    "DevdocsOpenFloat",
+    "DevdocsOpenCurrent",
+    "DevdocsOpenCurrentFloat",
+    "DevdocsToggle",
+    "DevdocsUpdate",
+  },
+  keys = {
+    { "<leader>dd", "<cmd>DevdocsOpenCurrentFloat<cr>", desc = "DevDocs (current filetype)" },
+    { "<leader>ds", "<cmd>DevdocsOpenFloat<cr>",        desc = "DevDocs (search all)" },
+    { "<leader>di", "<cmd>DevdocsInstall<cr>",          desc = "DevDocs install" },
+    { "<leader>du", "<cmd>DevdocsUninstall<cr>",        desc = "DevDocs uninstall" },
+    { "<leader>dt", "<cmd>DevdocsToggle<cr>",           desc = "DevDocs toggle" },
+  },
+  opts = {
+    dir_path = vim.fn.stdpath("data") .. "/devdocs",
+    telescope = {},
+    filetypes = {
+      javascript = { "javascript", "node" },
+      typescript = { "javascript", "typescript", "node" },
+      python = { "python~3.12", "numpy", "pandas" },
+      lua = "lua~5.1",
+      html = "html",
+      css = "css",
+      c = "c",
+      cpp = "cpp",
+      java = "openjdk~21",
+      json = "javascript",
+      sql = "sql",
+      nix = "nix",
+    },
+    float_win = {
+      relative = "editor",
+      height = 35,
+      width = 120,
+      border = "rounded",
+    },
+    wrap = true,
+    previewer_cmd = nil,
+    cmd_args = {},
+    cmd_ignore = {},
+    picker_cmd = false,
+    picker_cmd_args = {},
+    mappings = {
+      open_in_browser = "",
+    },
+    ensure_installed = {
+      "html",
+      "css",
+      "javascript",
+      "typescript",
+      "python~3.12",
+      "lua~5.1",
+      "c",
+      "cpp",
+    },
+    after_open = function(bufnr)
+      vim.api.nvim_buf_set_keymap(bufnr, "n", "<Esc>", ":close<cr>", { silent = true })
+      vim.api.nvim_buf_set_keymap(bufnr, "n", "q", ":close<cr>", { silent = true })
+    end,
+  },
+}
