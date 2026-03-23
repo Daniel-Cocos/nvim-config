@@ -15,53 +15,22 @@ end
 -- Palette
 -- =============================================================================
 local colors = {
-  pink2 = "#ff36ab",
-  pink3 = "#ff6Bab",
-  coralBlush = "#D98982",
-  black = "#000000",
-  blushVeil = "#EC9EAD",
-  dustyPetal = "#D59CA4",
+  -- Core
+  blue = "#4885FF",
+  yellow = "#FFC857",
+  pink = "#FF3EA5",
+  -- Neutrals
   fujiWhite = "#D0D0D0",
-  ivoryMist = "#F8F8F0",
   white = "#FFFFFF",
-  silverGray = "#808080",
-  sumiInk1 = "#1F1F28",
-  sumiInk2 = "#2A2A37",
-  waveBlue2 = "#2D4F67",
-  samuraiRed = "#E82424",
-  dragonBlue = "#658594",
-  springViolet1 = "#938AA9",
-  crystalPink = "#A86E87",
-  softPurple1 = "#176E8E",
-  deepLilac = "#8972C6",
-  gitAdd = "#98BE65",
-  gitChange = "#51AFEF",
-  gitDelete = "#FF6C6B",
-  seafoamGreen = "#6EA88F",
-  softPurple = "#A86E87",
-  hazardOrange = "#FF9E3B",
-  mutedTeal = "#3BA7A4",
+  gray = "#9FABBD";
+  darkGray = "#8A97AA",
+  lightGray = "#B5C1D3",
   faddedIndigo = "#4C5C68",
-  rosewoodMist = "#B36A68",
-  charcoalMist = "#2e2e2e",
-
-  peachRed = "#E13C6B",
-  mintGreen = "#6EBB82",
-  waveRed = "#DD5555",
-  springBlue = "#549CB4", -- #4885ff 
-  sageGreen = "#87A96B",
-  springLilac = "#9E9BC6",
-  goldenYellow = "#E5B567",
-  goldenYellow1 = "#FFC857",
-  deepIndigo = "#6B5B95",
-  salmonOrange = "#EC8B5E",
-  warmGray = "#9B8B7E",
-  mossGreen = "#82B894",
-  goldenrod = "#D9B277",
-  aqua = "#66B3B3",
-  deepNavy = "#212629",
-  porcelain = "#D4D9DC",
-  slateComment = "#5C666A",
+  -- Diagnostics
+  orange = "#FF9E3B",
+  red = "#E82424",
+  mutedBlue = "#658594",
+  mutedTeal = "#3BA7A4",
 }
 
 -- =============================================================================
@@ -87,12 +56,12 @@ local function apply_default_highlights()
   hi("CursorColumn", { bg = "NONE" })
   hi("CursorLine", { bg = "NONE" })
   hi("CursorLineNr", { fg = colors.white, bg = "None", bold = true })
-  hi("LineNr", { fg = colors.silverGray, bg = true })
-  hi("Normal", { fg = colors.fujiWhite, bg = true })
+  hi("LineNr", { fg = colors.gray, bg = "NONE" })
+  hi("Normal", { fg = colors.fujiWhite, bg = "NONE" })
   hi("NormalFloat", { fg = colors.faddedIndigo, bg = "NONE" })
-  hi("SignColumn", { bg = true })
-  hi("VertSplit", { fg = colors.sumiInk2, bg = true })
-  hi("Visual", { bg = "NONE" })
+  hi("SignColumn", { bg = "NONE" })
+  hi("VertSplit", { fg = colors.white, bg = "NONE" })
+  hi("Visual", { bg = colors.white })
 
   -- Command Line
   hi("CmdlinePrompt", { fg = colors.white })
@@ -112,9 +81,9 @@ local function apply_default_highlights()
   hi("PmenuThumb", { bg = "NONE" })
 
   -- Search and Match
-  hi("Search", { bg = "NONE", bold = true, underline = true })
-  hi("IncSearch", { fg = colors.goldenYellow, bg = "NONE", bold = true })
-  hi("MatchParen", { fg = colors.goldenYellow, bg = "NONE", bold = true })
+  hi("Search", { fg = colors.white, bold = true, underline = true })
+  hi("IncSearch", { fg = colors.white, bold = true })
+  hi("MatchParen", { fg = colors.white, bold = true })
 
   -- Tabs
   hi("TabLineSel", { fg = colors.white, bg = "NONE", bold = true })
@@ -122,96 +91,100 @@ local function apply_default_highlights()
   hi("TabLineFill", { bg = "NONE" })
 
   -- LSP Diagnostics
-  hi("DiagnosticError", { fg = colors.samuraiRed })
-  hi("DiagnosticWarn", { fg = colors.hazardOrange })
+  hi("DiagnosticError", { fg = colors.red })
+  hi("DiagnosticWarn", { fg = colors.orange })
   hi("DiagnosticInfo", { fg = colors.mutedTeal })
-  hi("DiagnosticHint", { fg = colors.dragonBlue })
-  hi("DiagnosticVirtualTextError", { fg = colors.samuraiRed, bg = true })
-  hi("DiagnosticVirtualTextWarn", { fg = colors.hazardOrange, bg = true })
-  hi("DiagnosticVirtualTextInfo", { fg = colors.mutedTeal, bg = true })
-  hi("DiagnosticVirtualTextHint", { fg = colors.dragonBlue, bg = true })
-  hi("DiagnosticUnderlineError", { sp = colors.samuraiRed, underline = true })
-  hi("DiagnosticUnderlineWarn", { sp = colors.hazardOrange, underline = true })
+  hi("DiagnosticHint", { fg = colors.mutedBlue })
+  hi("DiagnosticVirtualTextError", { fg = colors.red, bg = "NONE" })
+  hi("DiagnosticVirtualTextWarn", { fg = colors.orange, bg = "NONE" })
+  hi("DiagnosticVirtualTextInfo", { fg = colors.mutedTeal, bg = "NONE" })
+  hi("DiagnosticVirtualTextHint", { fg = colors.mutedBlue, bg = "NONE" })
+  hi("DiagnosticUnderlineError", { sp = colors.red, underline = true })
+  hi("DiagnosticUnderlineWarn", { sp = colors.orange, underline = true })
   hi("DiagnosticUnderlineInfo", { sp = colors.mutedTeal, underline = true })
-  hi("DiagnosticUnderlineHint", { sp = colors.dragonBlue, underline = true })
-  hi("DiagnosticSignError", { fg = colors.samuraiRed })
-  hi("DiagnosticSignWarn", { fg = colors.hazardOrange })
+  hi("DiagnosticUnderlineHint", { sp = colors.mutedBlue, underline = true })
+  hi("DiagnosticSignError", { fg = colors.red })
+  hi("DiagnosticSignWarn", { fg = colors.orange })
   hi("DiagnosticSignInfo", { fg = colors.mutedTeal })
-  hi("DiagnosticSignHint", { fg = colors.dragonBlue })
+  hi("DiagnosticSignHint", { fg = colors.mutedBlue })
 
   -- Git Signs
-  hi("GitSignsAdd", { fg = colors.gitAdd, bg = true })
-  hi("GitSignsChange", { fg = colors.gitChange, bg = true })
-  hi("GitSignsDelete", { fg = colors.gitDelete, bg = true })
+  hi("GitSignsAdd", { fg = "#98BE65", bg = "NONE" })
+  hi("GitSignsChange", { fg = colors.blue, bg = "NONE" })
+  hi("GitSignsDelete", { fg = colors.red, bg = "NONE" })
 
   -- Tree-sitter Syntax (Default)
-  hi("@variable", { fg = colors.springBlue })
-  hi("@variable.builtin", { fg = colors.peachRed, bold = true })
-  hi("@parameter", { fg = colors.dragonBlue })
-  hi("@field", { fg = colors.crystalPink })
-  hi("@property", { fg = colors.springBlue })
-  hi("@constant", { fg = colors.coralBlush }) -- TEMP
-  hi("@constant.builtin", { fg = colors.coralBlush, bold = true })
-  hi("@function", { fg = colors.hazardOrange })
-  --hi("@function.builtin", { fg = colors.peachRed, bold = true })
-  --hi("@function.method", { fg = colors.softPurple })
-  --hi("@function.method.call", { fg = colors.softPurple, bold = true })
-  hi("@constructor", { fg = colors.softPurple })
-  hi("@type", { fg = colors.pink3 })
-  hi("@type.builtin", { fg = colors.pink3, bold = true })
-  hi("@attribute", { fg = colors.hazardOrange })
-  hi("@keyword", { fg = colors.samuraiRed, bold = true })
-  --hi("@keyword.import", { fg = colors.peachRed, bold = true })
-  --hi("@keyword.return", { fg = colors.peachRed, bold = true })
-  -- hi("@keyword.function", { fg = colors.weepLilac, bold = true })
-  hi("@keyword.modifier", { fg = colors.samuraiRed })
-  --hi("@keyword.class", { fg = colors.rosewoodMist })
-  hi("@operator", { fg = colors.salmonOrange, bold = true })
-  hi("@punctuation", { fg = colors.silverGray })
-  hi("@string", { fg = colors.seafoamGreen })
-  hi("@character", { fg = colors.seafoamGreen })
-  hi("@string.escape", { fg = colors.seafoamGreen })
-  hi("@number", { fg = colors.pink2, bold = true })
-  hi("@number.float", { fg = colors.pink2, bold = true })
-  hi("@boolean", { fg = colors.peachRed, bold = true })
+  hi("@variable", { fg = colors.blue })
+  hi("@variable.builtin", { fg = colors.blue, bold = true })
+  hi("@parameter", { fg = colors.blue })
+  hi("@field", { fg = colors.blue })
+  hi("@property", { fg = colors.blue })
+  hi("@constant", { fg = colors.gray }) -- TEMP
+  hi("@constant.builtin", { fg = colors.gray, bold = true })
+  hi("@function", { fg = colors.yellow })
+  --hi("@function.builtin", { fg = colors.pink, bold = true })
+  --hi("@function.method", { fg = colors.goldneYellow })
+  --hi("@function.method.call", { fg = colors.yellow, bold = true })
+  hi("@constructor", { fg = colors.gray })
+  hi("@type", { fg = colors.gray })
+  hi("@type.builtin", { fg = colors.pink, bold = true })
+  hi("@attribute", { fg = colors.yellow })
+  hi("@keyword", { fg = colors.pink, bold = true })
+  --hi("@keyword.import", { fg = colors.pink, bold = true })
+  --hi("@keyword.return", { fg = colors.pink, bold = true })
+  -- hi("@keyword.function", { fg = colors.deepLilac, bold = true })
+  hi("@keyword.modifier", { fg = colors.pink })
+  --hi("@keyword.class", { fg = colors.white })
+  hi("@operator", { fg = colors.lightGray })
+  hi("@punctuation", { fg = colors.darkGray })
+  hi("@punctuation.special", { fg = colors.darkGray })
+  hi("@string", { fg = colors.gray })
+  hi("@string.special", { fg = colors.blue })
+  hi("@character", { fg = colors.yellow })
+  --hi("@string.escape", { fg = colors.gray })
+  --hi("@string.regexp", { fg = colors.gray })
+  --hi("@string.special.path", { fg = colors.gray })
+  hi("@number", { fg = colors.pink, bold = true })
+  hi("@number.float", { fg = colors.pink, bold = true })
+  hi("@boolean", { fg = colors.yellow, bold = true })
   hi("@comment", { fg = colors.faddedIndigo, italic = true })
   hi("@spell", { fg = colors.faddedIndigo, italic = true })
-  hi("@tag", { fg = colors.crystalPink })
-  --hi("@tag.attribute", { fg = colors.springLilac })
-  --hi("@tag.builtin", { fg = colors.crystalPink })
+  hi("@tag", { fg = colors.pink })
+  --hi("@tag.attribute", { fg = colors.white })
+  --hi("@tag.builtin", { fg = colors.accentBlue })
   --hi("@tag.delimiter", { fg = colors.faddedIndigo })
-  --hi("@markup.heading", { fg = colors.dragonBlue })
-  --hi("@markup.raw.block", { fg = colors.seafoamGreen, bg = "None", bold = true })
-  hi("@module", { fg = colors.crystalPink, bg = "None" })
+  --hi("@markup.heading", { fg = colors.mutedBlue })
+  --hi("@markup.raw.block", { fg = colors.yellow, bg = "None", bold = true })
+  hi("@module", { fg = "#549CB4", bg = "None" })
 
   -- Other Plugins
   -- CMP, Noice, LuaLine, Telescope
-  hi("FloatBorder", { fg = colors.ivoryMist, bg = true })
+  hi("FloatBorder", { fg = colors.white, bg = "NONE" })
   hi("CmpCursorLine", { fg = colors.white, bg = "NONE", bold = true })
-  hi("CmpItemAbbr", { fg = colors.springBlue })
-  hi("CmpItemAbbrMatch", { fg = colors.ivoryMist, bold = true })
-  hi("CmpItemMenu", { fg = colors.silverGray })
-  hi("CmpItemKindFunction", { fg = colors.dustyPetal })
-  hi("CmpItemKindMethod", { fg = colors.dustyPetal })
-  hi("CmpItemKindField", { fg = colors.crystalPink })
-  hi("CmpItemKindFile", { fg = colors.fujiWhite })
-  hi("CmpItemKindFolder", { fg = colors.dragonBlue })
-  hi("CmpItemKindKeyword", { fg = colors.softPurple })
-  hi("CmpItemKindVariable", { fg = colors.blushVeil })
-  hi("CmpItemKindValue", { fg = colors.peachRed })
-  hi("CmpItemKindColor", { fg = colors.fujiWhite })
-  hi("CmpItemKindConstant", { fg = colors.springLilac })
-  hi("CmpItemKindConstructor", { fg = colors.rosewoodMist })
-  hi("CmpItemKindClass", { fg = colors.rosewoodMist })
-  hi("CmpItemKindEnum", { fg = colors.deepLilac })
-  hi("CmpItemKindEnumMember", { fg = colors.deepLilac })
-  hi("CmpItemKindText", { fg = colors.fujiWhite })
-  hi("CmpItemKindSnippet", { fg = colors.seafoamGreen })
-  hi("CmpItemKindStruct", { fg = colors.deepLilac })
-  hi("CmpItemKindInterface", { fg = colors.deepLilac })
-  hi("CmpItemKindModule", { fg = colors.softPurple })
-  hi("CmpItemKindProperty", { fg = colors.springBlue })
-  hi("CmpItemKindReference", { fg = colors.fujiWhite })
+  hi("CmpItemAbbr", { fg = colors.fujiWhite })
+  hi("CmpItemAbbrMatch", { fg = colors.pink, bold = true })
+  hi("CmpItemMenu", { fg = colors.gray })
+  hi("CmpItemKindFunction", { fg = colors.gray })
+  hi("CmpItemKindMethod", { fg = colors.gray })
+  hi("CmpItemKindField", { fg = colors.gray })
+  hi("CmpItemKindFile", { fg = colors.gray })
+  hi("CmpItemKindFolder", { fg = colors.gray })
+  hi("CmpItemKindKeyword", { fg = colors.gray })
+  hi("CmpItemKindVariable", { fg = colors.gray })
+  hi("CmpItemKindValue", { fg = colors.gray })
+  hi("CmpItemKindColor", { fg = colors.gray })
+  hi("CmpItemKindConstant", { fg = colors.gray })
+  hi("CmpItemKindConstructor", { fg = colors.gray })
+  hi("CmpItemKindClass", { fg = colors.gray })
+  hi("CmpItemKindEnum", { fg = colors.gray })
+  hi("CmpItemKindEnumMember", { fg = colors.gray })
+  hi("CmpItemKindText", { fg = colors.gray })
+  hi("CmpItemKindSnippet", { fg = colors.gray })
+  hi("CmpItemKindStruct", { fg = colors.gray })
+  hi("CmpItemKindInterface", { fg = colors.gray })
+  hi("CmpItemKindModule", { fg = colors.gray })
+  hi("CmpItemKindProperty", { fg = colors.gray })
+  hi("CmpItemKindReference", { fg = colors.gray })
 
   -- Noice
   hi("NoiceCmdline", { fg = colors.fujiWhite, bg = "NONE" })
@@ -227,23 +200,23 @@ local function apply_default_highlights()
   hi("NoiceConfirmBorder", { fg = colors.white, bg = "NONE" })
   hi("NoiceCmdlineIconSearch", { fg = colors.white, bg = "NONE" })
 
-  -- Blink.cmp (add after your existing Cmp highlights)
+  -- Blink.cmp
   hi("BlinkCmpMenu", { fg = colors.fujiWhite, bg = "NONE" })
   hi("BlinkCmpMenuBorder", { fg = colors.white, bg = "NONE" })
-  hi("BlinkCmpMenuSelection", { fg = colors.white, bg = "NONE", bold = true })
+  hi("BlinkCmpMenuSelection", { fg = colors.blue, bg = "NONE", bold = true })
   hi("BlinkCmpDoc", { fg = colors.fujiWhite, bg = "NONE" })
   hi("BlinkCmpDocBorder", { fg = colors.white, bg = "NONE" })
   hi("BlinkCmpDocSeparator", { fg = colors.white, bg = "NONE" })
-  hi("BlinkCmpLabel", { fg = colors.springBlue })
-  hi("BlinkCmpLabelMatch", { fg = colors.ivoryMist, bold = true })
-  hi("BlinkCmpLabelDescription", { fg = colors.silverGray })
-  hi("BlinkCmpKind", { fg = colors.dustyPetal })
+  hi("BlinkCmpLabel", { fg = colors.white, bold = true })
+  hi("BlinkCmpLabelMatch", { fg = colors.pink, bold = true })
+  hi("BlinkCmpLabelDescription", { fg = colors.gray })
+  hi("BlinkCmpKind", { fg = colors.pink })
 
-  hi("StatusLine", { fg = colors.ivoryMist, bg = "NONE" })
-  hi("StatusLineNC", { fg = colors.silverGray, bg = "NONE" })
+  hi("StatusLine", { fg = colors.white, bg = "NONE" })
+  hi("StatusLineNC", { fg = colors.gray, bg = "NONE" })
 
   hi("TelescopeSelection", { bg = "NONE", bold = true })
-  hi("TelescopeMatching", { fg = colors.pink2, bold = true })
+  hi("TelescopeMatching", { fg = colors.pink, bold = true })
   hi("TelescopeNormal", { fg = colors.fujiWhite, bg = "NONE" })
   hi("TelescopeBorder", { fg = colors.white, bg = "NONE" })
 
@@ -254,92 +227,28 @@ end
 -- Language-Specific Overrides
 -- =============================================================================
 local language_overrides = {
-  --c = {
-    --["@keyword.import"] = { fg = colors.samuraiRed }, -- #include, #define
-    --["@type.builtin"] = { fg = colors.springBlue, bold = true }, -- int, char, void
-    --["@constant.builtin"] = { fg = colors.peachRed }, -- NULL, TRUE, FALSE
-    --["@operator"] = { fg = colors.waveRed }, -- *, ->, &
-  --},
-  --cpp = {
-    --["@keyword.import"] = { fg = colors.samuraiRed }, -- #include, #define
-    --["@type.builtin"] = { fg = colors.springBlue, bold = true }, -- int, char, void
-    --["@constructor"] = { fg = colors.dustyPetal, italic = true }, -- Class constructors
-    --["@keyword.class"] = { fg = colors.deepLilac }, -- class, struct
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this
-  --},
-  -- CSS: Differentiate properties, selectors, and values
-  --css = {
-    --["@tag"] = { fg = colors.dragonBlue, bold = true }, -- Tag selectors (div, p)
-    --["@property"] = { fg = colors.blushVeil }, -- color, font-size
-    --["@constant"] = { fg = colors.crystalPink }, -- IDs (#main)
-    --["@variable"] = { fg = colors.coralBlush }, -- Classes (.container)
-    --["@constant.builtin"] = { fg = colors.peachRed }, -- Units (px, em, rem)
-    --["@string"] = { fg = colors.seafoamGreen }, -- "string values"
-  --},
-  -- HTML: Tags and attributes
-  --html = {
-    --["@tag"] = { fg = colors.coralBlush },
-    --["@tag.attribute"] = { fg = colors.springBlue, italic = true },
-    --["@tag.delimiter"] = { fg = colors.faddedIndigo },
-  --},
-  -- Lua: Keywords and table-related syntax
-  --lua = {
-    --["@keyword.function"] = { fg = colors.softPurple, bold = true },
-    --["@keyword"] = { fg = colors.springViolet1 }, -- local, if, for, end
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- self
-    --["@function"] = { fg = colors.springBlue },
-    --["@punctuation"] = { fg = colors.fujiWhite }, -- Brackets for tables
-  --},
   -- Python: Keywords, decorators, and self
   python = {
-    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- def, class, if
-    --["@attribute"] = { fg = colors.hazardOrange, italic = true }, -- @decorators
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- self
-    --["@type"] = { fg = colors.springBlue },
-    --["@function"] = { fg = colors.coralBlush },
-    ["@function.builtin"] = { fg = colors.peachRed, bold = true },
+    --["@keyword"] = { fg = colors.white, bold = true }, -- def, class, if
+    --["@attribute"] = { fg = colors.white, italic = true }, -- @decorators
+    --["@variable.builtin"] = { fg = colors.pink, italic = true }, -- self
+    --["@type"] = { fg = colors.gray },
+    --["@function"] = { fg = colors.gray },
+    ["@function.builtin"] = { fg = colors.pink, bold = true },
   },
-  -- SQL: Make keywords stand out
-  --sql = {
-    --["@keyword"] = { fg = colors.dragonBlue, bold = true }, -- SELECT, FROM, WHERE
-    --["@function"] = { fg = colors.springLilac }, -- COUNT(), MAX()
-    --["@variable"] = { fg = colors.fujiWhite }, -- table_names, column_names
-    --["@operator"] = { fg = colors.waveRed, bold = false },
-  --},
   markdown = {
     ["@spell"] = { fg = colors.white },
     ["@markup.heading"] = { fg = colors.white, bold = true },
-    ["@markup.raw.block"] = { fg = colors.seafoamGreen, bg = "NONE" }, -- Code blocks
-    ["@markup.strong"] = { fg = colors.peachRed, bold = true }, -- Bold
+    ["@markup.raw.block"] = { fg = colors.yellow, bg = "NONE" }, -- Code blocks
+    ["@markup.strong"] = { fg = colors.pink, bold = true }, -- Bold
     ["@markup.italic"] = { fg = colors.white, italic = true }, -- Italic
-    ["@markup.link.url"] = { fg = colors.springBlue, underline = true },
+    ["@markup.link.url"] = { fg = colors.blue, underline = true },
   },
   devdocs = {
     ["@spell"] = { fg = colors.white },
   },
-  --java = {
-    --["@keyword.modifier"] = { fg = colors.samuraiRed }, -- public, static, final
-    --["@type"] = { fg = colors.rosewoodMist, bold = true }, -- Class names
-    --["@attribute"] = { fg = colors.hazardOrange, italic = true }, -- @Annotations
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this, super
-    --["@type.builtin"] = { fg = colors.peachRed, bold = true }, -- int, boolean
-  --},
-  --javascript = {
-    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- const, let, function
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this, document, window
-    --["@property"] = { fg = colors.springBlue }, -- Object properties
-    --["@tag"] = { fg = colors.coralBlush }, -- For JSX
-    --["@tag.attribute"] = { fg = colors.springBlue, italic = true }, -- For JSX
-  --},
-  --typescript = {
-    --["@keyword"] = { fg = colors.deepLilac, bold = true }, -- const, let, function
-    --["@variable.builtin"] = { fg = colors.peachRed, italic = true }, -- this
-    --["@property"] = { fg = colors.springBlue }, -- Object properties
-    --["@type"] = { fg = colors.springLilac, italic = true }, -- type, interface definitions
-    --["@tag"] = { fg = colors.coralBlush }, -- For TSX
-    --["@tag.attribute"] = { fg = colors.springBlue, italic = true }, -- For TSX
-  --},
 }
+
 -- Link typescriptreact and javascriptreact to their base languages for TSX/JSX
 language_overrides.typescriptreact = language_overrides.typescript
 language_overrides.javascriptreact = language_overrides.javascript
@@ -378,4 +287,3 @@ end
 
 apply_colors()
 vim.g.colors_name = "cottoncandy"
-

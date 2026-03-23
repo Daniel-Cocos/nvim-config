@@ -3,11 +3,10 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' }, -- ◢◤ ◥◣ │
   config = function()
     local colors = {
-      ivoryMist    = "#F8F8F0",
+      white    = "#FFFFFF",
       samuraiRed   = "#E82424",
       hazardOrange = "#FF9E3B",
       mutedTeal    = "#3BA7A4",
-      seafoamGreen = "#6EA88F",
     }
 
     local function diag_count(severity)
@@ -28,7 +27,7 @@ return {
       for name, section in pairs(sections) do
         local is_left = name:sub(9, 10) < 'x'
         for pos = 1, (name ~= 'lualine_z' and #section or #section - 1) do
-          table.insert(section, pos * 2, { empty, color = { fg = colors.ivoryMist, bg = 'NONE' } })
+          table.insert(section, pos * 2, { empty, color = { fg = colors.white, bg = 'NONE' } })
         end
         for idx, comp in ipairs(section) do
           if type(comp) ~= 'table' then
@@ -49,20 +48,20 @@ return {
         section_separators   = { left = ' ', right = ' ' },
         theme = {
           normal = {
-            a = { fg = colors.ivoryMist, bg = 'NONE' },
-            b = { fg = colors.ivoryMist, bg = 'NONE' },
-            c = { fg = colors.ivoryMist, bg = 'NONE' },
-            z = { fg = colors.ivoryMist, bg = 'NONE' },
+            a = { fg = colors.white, bg = 'NONE' },
+            b = { fg = colors.white, bg = 'NONE' },
+            c = { fg = colors.white, bg = 'NONE' },
+            z = { fg = colors.white, bg = 'NONE' },
           },
-          insert  = { a = { fg = colors.ivoryMist, bg = 'NONE' } },
-          visual  = { a = { fg = colors.ivoryMist, bg = 'NONE' } },
-          replace = { a = { fg = colors.ivoryMist, bg = 'NONE' } },
-          command = { a = { fg = colors.ivoryMist, bg = 'NONE' } },
+          insert  = { a = { fg = colors.white, bg = 'NONE' } },
+          visual  = { a = { fg = colors.white, bg = 'NONE' } },
+          replace = { a = { fg = colors.white, bg = 'NONE' } },
+          command = { a = { fg = colors.white, bg = 'NONE' } },
           inactive = {
-            a = { fg = colors.ivoryMist, bg = 'NONE' },
-            b = { fg = colors.ivoryMist, bg = 'NONE' },
-            c = { fg = colors.ivoryMist, bg = 'NONE' },
-            z = { fg = colors.ivoryMist, bg = 'NONE' },
+            a = { fg = colors.white, bg = 'NONE' },
+            b = { fg = colors.white, bg = 'NONE' },
+            c = { fg = colors.white, bg = 'NONE' },
+            z = { fg = colors.white, bg = 'NONE' },
           },
         },
         icons_enabled      = true,
@@ -83,7 +82,7 @@ return {
               return vim.fn.isdirectory('.git') == 1
                 or vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';') ~= ''
             end,
-            color = { fg = colors.ivoryMist, bg = 'NONE', gui = 'bold' },
+            color = { fg = colors.white, bg = 'NONE', gui = 'bold' },
           },
 
           -- error count element
@@ -97,7 +96,7 @@ return {
             end,
             color = function()
               local n = diag_count(vim.diagnostic.severity.ERROR)
-              return { fg = n > 0 and colors.samuraiRed or colors.ivoryMist, bg = 'NONE' }
+              return { fg = n > 0 and colors.samuraiRed or colors.white, bg = 'NONE' }
             end,
             padding = { left = 1, right = 0 },
           },
@@ -113,7 +112,7 @@ return {
             end,
             color = function()
               local n = diag_count(vim.diagnostic.severity.WARN)
-              return { fg = n > 0 and colors.hazardOrange or colors.ivoryMist, bg = 'NONE' }
+              return { fg = n > 0 and colors.hazardOrange or colors.white, bg = 'NONE' }
             end,
             padding = { left = 1, right = 0 },
           },
@@ -129,7 +128,7 @@ return {
             end,
             color = function()
               local n = diag_count(vim.diagnostic.severity.INFO)
-              return { fg = n > 0 and colors.mutedTeal or colors.ivoryMist, bg = 'NONE' }
+              return { fg = n > 0 and colors.mutedTeal or colors.white, bg = 'NONE' }
             end,
             padding = { left = 1, right = 0 },
           },
@@ -144,7 +143,7 @@ return {
                 or diag_count(vim.diagnostic.severity.WARN) > 0
                 or diag_count(vim.diagnostic.severity.INFO) > 0
             end,
-            color = { fg = colors.ivoryMist, bg = 'NONE' },
+            color = { fg = colors.white, bg = 'NONE' },
             padding = { left = 1, right = 0 },
           },
 
@@ -153,7 +152,7 @@ return {
             'filename',
             file_status = false,
             path = 1,
-            color = { fg = colors.ivoryMist, bg = 'NONE' },
+            color = { fg = colors.white, bg = 'NONE' },
             fmt = function(str)
               if vim.bo.filetype == 'TelescopePrompt' then
                 return 'Searching'
@@ -168,7 +167,7 @@ return {
             function()
               return vim.bo.modified and '[+]' or ''
             end,
-            color = { fg = colors.ivoryMist, bg = 'NONE', gui = 'bold' },
+            color = { fg = colors.white, bg = 'NONE', gui = 'bold' },
             cond = function() return vim.bo.modified end,
             padding = { left = 1, right = 0 },
           },
@@ -190,7 +189,7 @@ return {
               local name = vim.fn.expand("%:t")
               local ext  = vim.fn.expand("%:e")
               local _, icon_color = devicons.get_icon_color(name, ext, { default = false })
-              local fg = icon_color or colors.ivoryMist
+              local fg = icon_color or colors.white
               return { fg = fg, bg = 'NONE' }
             end,
             padding = { left = 1, right = 1 },
@@ -198,7 +197,7 @@ return {
         },
 
         lualine_z = {
-          { '%l/%L', color = { fg = colors.ivoryMist, bg = 'NONE' } },
+          { '%l/%L', color = { fg = colors.white, bg = 'NONE' } },
         },
       },
 
@@ -211,7 +210,7 @@ return {
               local name = vim.fn.expand('%:t')
               return name ~= '' and name or '[No Name]'
             end,
-            color = { fg = colors.ivoryMist, bg = 'NONE' },
+            color = { fg = colors.white, bg = 'NONE' },
           },
         },
         lualine_x = {},

@@ -63,6 +63,7 @@ vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>") -- navigate right a window
 ---- Diagnostic ----
 -- Navigate Diagnostic Messages --
 
+-- Next
 vim.keymap.set("n", "<leader>gej", function()
   vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Go to next error" })
@@ -79,7 +80,7 @@ vim.keymap.set("n", "<leader>ghj", function()
   vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.HINT })
 end, { desc = "Go to next info" })
 
--- Navigate to previous diagnostic by severity --
+-- Previous
 vim.keymap.set("n", "<leader>gek", function()
   vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Go to previous error" })
