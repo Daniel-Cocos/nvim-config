@@ -6,6 +6,11 @@ return {
   config = function()
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+    -- Set default capabilities for all LSP servers
+    vim.lsp.config('*', {
+      capabilities = capabilities,
+    })
+
     -- Keybinds (applied when LSP attaches to buffer)
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -21,16 +26,16 @@ return {
       end,
     })
 
-    -- Load language-specific configs
-    require("lsp.langs.python").setup(capabilities)
-    require("lsp.langs.lua").setup(capabilities)
-    require("lsp.langs.typescript").setup(capabilities)
-    require("lsp.langs.nix").setup(capabilities)
-    require("lsp.langs.html").setup(capabilities)
-    require("lsp.langs.json").setup(capabilities)
-    require("lsp.langs.java").setup(capabilities)
-    require("lsp.langs.css").setup(capabilities)
-    require("lsp.langs.sql").setup(capabilities)
-    require("lsp.langs.c").setup(capabilities)
+    -- Load language-specific configs (they call vim.lsp.config + vim.lsp.enable)
+    require("lsp.langs.python").setup()
+    require("lsp.langs.lua").setup()
+    require("lsp.langs.typescript").setup()
+    require("lsp.langs.nix").setup()
+    require("lsp.langs.html").setup()
+    require("lsp.langs.json").setup()
+    require("lsp.langs.java").setup()
+    require("lsp.langs.css").setup()
+    require("lsp.langs.sql").setup()
+    require("lsp.langs.c").setup()
   end,
 }

@@ -1,10 +1,7 @@
 local M = {}
 
-function M.setup(capabilities)
-  local lspconfig = require("lspconfig")
-
-  lspconfig.lua_ls.setup({
-    capabilities = capabilities,
+function M.setup()
+  vim.lsp.config('lua_ls', {
     settings = {
       Lua = {
         runtime = { version = "LuaJIT" },
@@ -17,6 +14,7 @@ function M.setup(capabilities)
       },
     },
   })
+  vim.lsp.enable('lua_ls')
 end
 
 return M

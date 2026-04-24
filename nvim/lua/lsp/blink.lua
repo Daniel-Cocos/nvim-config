@@ -28,7 +28,7 @@ return {
 			},
 			menu = {
 				border = "rounded",
-        scrollbar = false,
+				scrollbar = false,
 				draw = {
 					columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
 				},
@@ -43,6 +43,9 @@ return {
 		},
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+		},
+		fuzzy = {
+			implementation = "lua",
 		},
 	},
 	opts_extend = { "sources.default" },

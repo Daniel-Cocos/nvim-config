@@ -1,11 +1,8 @@
 local M = {}
 
-function M.setup(capabilities)
-  local lspconfig = require("lspconfig")
-
-  lspconfig.cssls.setup({
-    capabilities = capabilities,
-  })
+function M.setup()
+  vim.lsp.config('cssls', {})
+  vim.lsp.enable('cssls')
 end
 
 return M

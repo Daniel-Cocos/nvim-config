@@ -13,11 +13,8 @@ local function get_poetry_venv()
   return nil
 end
 
-function M.setup(capabilities)
-  local lspconfig = require("lspconfig")
-
-  lspconfig.pyright.setup({
-    capabilities = capabilities,
+function M.setup()
+  vim.lsp.config('pyright', {
     before_init = function(_, config)
       local venv = get_poetry_venv()
       if venv then
@@ -37,6 +34,7 @@ function M.setup(capabilities)
       },
     },
   })
+  vim.lsp.enable('pyright')
 end
 
 return M

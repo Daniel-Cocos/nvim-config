@@ -1,11 +1,8 @@
 local M = {}
 
-function M.setup(capabilities)
-  local lspconfig = require("lspconfig")
-
-  lspconfig.jdtls.setup({
-    capabilities = capabilities,
-  })
+function M.setup()
+  vim.lsp.config('jdtls', {})
+  vim.lsp.enable('jdtls')
 end
 
 return M
